@@ -1,0 +1,142 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+h1 {
+  text-align: center;
+  color: #333;
+}
+.gpa {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.gpa h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.gpa-courses {
+  margin-bottom: 20px;
+  background: whitesmoke;
+  min-height: 40px;
+  padding: 15px 10px;
+}
+.gpa-course {
+  display: flex;
+  margin-bottom: 10px;
+}
+.gpa-course input {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.gpa-course select {
+  padding: 2.5px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-width: 10%;
+}
+.gpa-course button {
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.gpa-course button:hover {
+  background-color: #555;
+}
+.gpa-courses .gpa-course:last-child {
+  margin-bottom: 0;
+}
+.gpa-courses .gpa-course .remove-course {
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.gpa-courses .gpa-course .remove-course:hover {
+  background-color: #ff3333;
+}
+.gpa h2 span {
+  color: #333;
+  font-size: 24px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+table th,
+table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+table th {
+  background-color: #f0f0f0;
+}
+/* Style All buttons and make responsive page */
+button {
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.add-course {
+  background-color: #4caf50;
+  color: white;
+}
+
+.calculate-gpa {
+  background-color: #008cba;
+  color: white;
+}
+
+.reset {
+  background-color: #ff1100;
+  color: white;
+}
+button:hover {
+  background-color: #555;
+}
+.cgpa h2 {
+  text-align: center;
+}
+.cgpa .demo {
+  height: 100px;
+  background: whitesmoke;
+}
+
+@media (max-width: 600px) {
+  .gpa-course {
+    flex-direction: column;
+  }
+  .gpa-course input,
+  .gpa-course select {
+    width: 95%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  .gpa-course select {
+    width: 50%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
