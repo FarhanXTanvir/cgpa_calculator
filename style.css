@@ -1,41 +1,51 @@
+/* Global Styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #ffffff;
 }
-header{
+
+/* Header Styles */
+header {
   background: #333;
   color: #fff;
   padding: 10px 0;
   text-align: center;
 }
+
+/* Main Content Styles */
 .container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
 }
+
 .gpa {
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .gpa h2 {
   color: #333;
   font-size: 24px;
   margin-bottom: 20px;
 }
+
 .gpa-courses {
   margin-bottom: 20px;
   background: whitesmoke;
   min-height: 40px;
   padding: 15px 10px;
 }
+
 .gpa-course {
   display: flex;
   margin-bottom: 10px;
 }
+
 .gpa-course input {
   flex: 1;
   padding: 10px;
@@ -43,6 +53,7 @@ header{
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+
 .gpa-course select {
   padding: 2.5px;
   margin-right: 10px;
@@ -50,6 +61,7 @@ header{
   border-radius: 5px;
   min-width: 10%;
 }
+
 .gpa-course button {
   padding: 10px;
   background-color: #333;
@@ -58,12 +70,15 @@ header{
   border-radius: 5px;
   cursor: pointer;
 }
+
 .gpa-course button:hover {
   background-color: #555;
 }
+
 .gpa-courses .gpa-course:last-child {
   margin-bottom: 0;
 }
+
 .gpa-courses .gpa-course .remove-course {
   background-color: #ff0000;
   color: #fff;
@@ -71,28 +86,65 @@ header{
   border-radius: 5px;
   cursor: pointer;
 }
+
 .gpa-courses .gpa-course .remove-course:hover {
   background-color: #ff3333;
 }
+
 .gpa h2 span {
   color: #333;
   font-size: 24px;
 }
+
+.cgpa h2 {
+  text-align: center;
+}
+
+.cgpa {
+  background-color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin: 50px 0;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cgpa .terms {
+  height: 100px;
+  background: rgb(234, 234, 234);
+  text-align: center;
+  padding: 10px;
+}
+
+.gradScale {
+  border: solid black 1px;
+  padding: 6%;
+}
+
+.gradScale h2 {
+  margin: 0;
+  padding: 0;
+}
+
+/* Table Styles */
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
+
 table th,
 table td {
   border: 1px solid #ccc;
   padding: 10px;
   text-align: center;
 }
+
 table th {
   background-color: #f0f0f0;
 }
-/* Style All buttons and make responsive page */
+
+/* Button Styles */
 button {
   padding: 10px;
   background-color: #333;
@@ -101,6 +153,11 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
+
+button:hover {
+  background-color: #555;
+}
+
 .add-course {
   background-color: #4caf50;
   color: white;
@@ -115,41 +172,17 @@ button {
   background-color: #ff1100;
   color: white;
 }
-button:hover {
-  background-color: #555;
-}
-.cgpa h2 {
-  text-align: center;
-}
-.cgpa{
-  background-color: #fff;
-  text-align: center;
-  padding: 20px;
-  margin: 50px 0;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-.cgpa .terms {
-  height: 100px;
-  background: rgb(234, 234, 234);
-  text-align: center;
-  padding: 10px;
-}
-.gradScale{
-  border: solid black 1px;
-  padding: 6%;
-}
-.gradScale h2{
-  margin: 0;
-  padding: 0;
-}
-footer{
+
+/* Footer Styles */
+footer {
   text-align: center;
   padding: 10px;
   background: #333;
   color: #fff;
   width: 100%;
 }
+
+/* Responsive Styles */
 @media (max-width: 630px) {
   .gpa-course {
     flex-direction: column;
