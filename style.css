@@ -2,7 +2,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
 }
 .container {
   max-width: 800px;
@@ -119,9 +119,11 @@ button:hover {
 .cgpa h2 {
   text-align: center;
 }
-.cgpa .demo {
+.cgpa .terms {
   height: 100px;
-  background: whitesmoke;
+  background: rgb(234, 234, 234);
+  text-align: center;
+  padding: 10px;
 }
 
 @media (max-width: 600px) {
