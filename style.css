@@ -150,14 +150,14 @@ footer{
   color: #fff;
   width: 100%;
 }
-@media (max-width: 600px) {
+@media (max-width: 630px) {
   .gpa-course {
     flex-direction: column;
   }
   .gpa-course input,
   .gpa-course select {
     width: 95%;
-    margin-right: 0;
+    margin-right: 1%;
     margin-bottom: 10px;
   }
   .gpa-course select {
