@@ -4,14 +4,16 @@ body {
   padding: 0;
   background-color: #ffffff;
 }
+header{
+  background: #333;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
 .container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-}
-h1 {
-  text-align: center;
-  color: #333;
 }
 .gpa {
   background-color: #fff;
@@ -141,7 +143,13 @@ button:hover {
   margin: 0;
   padding: 0;
 }
-
+footer{
+  text-align: center;
+  padding: 10px;
+  background: #333;
+  color: #fff;
+  width: 100%;
+}
 @media (max-width: 600px) {
   .gpa-course {
     flex-direction: column;
