@@ -119,11 +119,27 @@ button:hover {
 .cgpa h2 {
   text-align: center;
 }
+.cgpa{
+  background-color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin: 50px 0;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 .cgpa .terms {
   height: 100px;
   background: rgb(234, 234, 234);
   text-align: center;
   padding: 10px;
+}
+.gradScale{
+  border: solid black 1px;
+  padding: 6%;
+}
+.gradScale h2{
+  margin: 0;
+  padding: 0;
 }
 
 @media (max-width: 600px) {
