@@ -91,29 +91,82 @@ header {
   background-color: #ff3333;
 }
 
-.gpa h2 span {
-  color: #333;
-  font-size: 24px;
-}
-
-.cgpa h2 {
-  text-align: center;
-}
-
+/* ------------CGPA------------- */
 .cgpa {
+  margin: 15px 0;
   background-color: #fff;
-  text-align: center;
   padding: 20px;
-  margin: 50px 0;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.cgpa .terms {
-  height: 100px;
-  background: rgb(234, 234, 234);
-  text-align: center;
+.cgpa h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.cgpa-terms {
+  margin-bottom: 20px;
+  background: whitesmoke;
+  min-height: 40px;
+  padding: 15px 10px;
+}
+
+.cgpa-term {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.cgpa-term input {
+  flex: 1;
   padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.cgpa-terms .cgpa-term:last-child {
+  margin-bottom: 0;
+}
+
+.remove-term {
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.remove-term:hover {
+  background-color: rgba(231, 125, 59, 0.685);
+}
+
+.cgpa .add-term  {
+  background-color: #4caf50;
+  color: white;
+}
+.cgpa .add-term:hover{
+  background-color: #4caf4fc5;
+  color: white;
+}
+
+.cgpa .calculate-cgpa {
+  background-color: #008cba;
+  color: white;
+}
+.cgpa .calculate-cgpa:hover {
+  background-color: #008bbab5;
+  color: white;
+}
+
+.cgpa .reset-cgpa {
+  background-color: #ff1100;
+  color: white;
+}
+.cgpa .reset-cgpa:hover {
+  background-color: #ff1100a8;
+  color: white;
 }
 
 .gradScale {
@@ -155,10 +208,10 @@ button {
 }
 
 button:hover {
-  background-color: #555;
+  background-color: #000000;
 }
 
-.add-course {
+.add-course  {
   background-color: #4caf50;
   color: white;
 }
@@ -196,6 +249,14 @@ footer {
   .gpa-course select {
     width: 50%;
     margin-right: 0;
+    margin-bottom: 10px;
+  }
+  .cgpa-term {
+    flex-direction: column;
+  }
+  .cgpa-term input {
+    width: 95%;
+    margin-right: 1%;
     margin-bottom: 10px;
   }
 }

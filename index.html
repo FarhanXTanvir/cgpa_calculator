@@ -62,9 +62,19 @@
         </div>
       </div>
       <div class="cgpa">
-        <h2>CGPA</h2>
-        <div class="terms">
-          <p>This feature will be added soon</p>
+        <h2 style="text-align: center">CGPA</h2>
+        <div class="cgpa-terms">
+          <div class="cgpa-term">
+            <input type="text" class="term" placeholder="Term" />
+            <input type="number" class="gpa-value" placeholder="GPA" />
+            <input type="number" class="total-credit" placeholder="Total Credit Hours" />
+            <button class="remove-term">Remove</button>
+          </div>
+        </div>
+        <div class="operationsCG">
+          <button class="add-term">Add Term</button>
+          <button class="calculate-cgpa">Calculate CGPA</button>
+          <button class="reset-cgpa">Reset</button>
         </div>
       </div>
       <div class="gradScale">
@@ -119,8 +129,9 @@
       </div>
     </div>
     <footer>
-      <p>&copy; 2024 Farhan Tanvir All Rights Reserved</p>
+      <p>&copy; 2024 Farhan Tanvir. All Rights Reserved</p>
     </footer>
-    <script src="script.js"></script>
+    <script src="gpa.js"></script>
+    <script src="cgpa.js"></script>
   </body>
 </html>
