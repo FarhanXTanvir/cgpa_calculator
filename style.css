@@ -1,6 +1,6 @@
 /* Global Styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family:'Arial Narrow Bold', sans-serif;
   margin: 0;
   padding: 0;
   background-color: #ffffff;
@@ -44,7 +44,9 @@ header {
 
 .gpa-course {
   display: flex;
+  background: rgb(234, 229, 229);
   margin-bottom: 10px;
+  padding: 10px;
 }
 
 .gpa-course input {
@@ -80,6 +82,19 @@ header {
   background-color: rgba(231, 125, 59, 0.685);
 }
 
+/* Button Styles */
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.gpa .operations {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
 .gpa .add-course {
   background-color: #4caf50;
   color: white;
@@ -131,7 +146,9 @@ header {
 
 .cgpa-term {
   display: flex;
+  background: rgb(234, 229, 229);
   margin-bottom: 10px;
+  padding: 10px;
 }
 
 .cgpa-term input {
@@ -165,6 +182,12 @@ header {
   background-color: rgba(231, 125, 59, 0.685);
 }
 
+.cgpa .operationsCG {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
 .cgpa .add-term {
   background-color: #4caf50;
   color: white;
@@ -196,6 +219,7 @@ header {
   border: solid black 1px;
   padding: 6%;
   position: relative;
+  margin-top: 10%;
 }
 
 .gradScale h2 {
@@ -205,8 +229,11 @@ header {
 #gradScale {
   display: inline-block;
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 1.5%;
+  right: 1.5%;
+  font-size: large;
+  font-weight:bold;
+  background-color: #f0f0f0;
 }
 
 /* Table Styles */
@@ -225,35 +252,6 @@ table td {
 
 table th {
   background-color: #f0f0f0;
-}
-
-/* Button Styles */
-button {
-  padding: 10px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #000000;
-}
-
-.add-course {
-  background-color: #4caf50;
-  color: white;
-}
-
-.calculate-gpa {
-  background-color: #008cba;
-  color: white;
-}
-
-.reset {
-  background-color: #ff1100;
-  color: white;
 }
 
 /* Footer Styles */
@@ -280,6 +278,13 @@ footer {
     margin-right: 0;
     margin-bottom: 10px;
   }
+  .remove-course {
+    width: 60%;
+    margin: 0 auto;
+  }
+  .gpa .operations {
+    text-align: center;
+  }
   .cgpa-term {
     flex-direction: column;
   }
@@ -287,5 +292,12 @@ footer {
     width: 93%;
     margin-right: 4%;
     margin-bottom: 10px;
+  }
+  .cgpa .operationsCG {
+    text-align: center;
+  }
+  .remove-term {
+    width: 60%;
+    margin: 0 auto;
   }
 }
