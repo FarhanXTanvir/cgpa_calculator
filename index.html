@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CGPA Calculator</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style2.css" />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -22,7 +22,7 @@
       sizes="16x16"
       href="favicon_io/favicon-16x16.png"
     />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="manifest" href="favicon_io/site.webmanifest" />
   </head>
   <body>
     <header>
@@ -67,7 +67,11 @@
           <div class="cgpa-term">
             <input type="text" class="term" placeholder="Term" />
             <input type="number" class="gpa-value" placeholder="GPA" />
-            <input type="number" class="total-credit" placeholder="Total Credit Hours" />
+            <input
+              type="number"
+              class="total-credit"
+              placeholder="Total Credit Hours"
+            />
             <button class="remove-term">Remove</button>
           </div>
         </div>
@@ -78,54 +82,62 @@
         </div>
       </div>
       <div class="gradScale">
+        <select name="gradScale" id="gradScale">
+          <option value="Default">Default</option>
+          <option value="BRAC">BRAC</option>
+          <option value="NSU">NSU</option>
+          <option value="AIUB">AIUB</option>
+        </select>
         <h2>Grade Scale:</h2>
-        <!-- Create a table of the grade scale -->
-        <table>
-          <tr>
-            <th>Grade</th>
-            <th>Points</th>
-          </tr>
-          <tr>
-            <td>A+</td>
-            <td>4.0</td>
-          </tr>
-          <tr>
-            <td>A</td>
-            <td>3.75</td>
-          </tr>
-          <tr>
-            <td>A-</td>
-            <td>3.50</td>
-          </tr>
-          <tr>
-            <td>B+</td>
-            <td>3.25</td>
-          </tr>
-          <tr>
-            <td>B</td>
-            <td>3.00</td>
-          </tr>
-          <tr>
-            <td>B-</td>
-            <td>2.75</td>
-          </tr>
-          <tr>
-            <td>C+</td>
-            <td>2.50</td>
-          </tr>
-          <tr>
-            <td>C</td>
-            <td>2.25</td>
-          </tr>
-          <tr>
-            <td>D</td>
-            <td>2.00</td>
-          </tr>
-          <tr>
-            <td>F</td>
-            <td>0.00</td>
-          </tr>
-        </table>
+        <div class="gradTable">
+          <!-- Create a table of the grade scale -->
+          <table>
+            <tr>
+              <th>Grade</th>
+              <th>Points</th>
+            </tr>
+            <tr>
+              <td>A+</td>
+              <td>4.0</td>
+            </tr>
+            <tr>
+              <td>A</td>
+              <td>3.75</td>
+            </tr>
+            <tr>
+              <td>A-</td>
+              <td>3.50</td>
+            </tr>
+            <tr>
+              <td>B+</td>
+              <td>3.25</td>
+            </tr>
+            <tr>
+              <td>B</td>
+              <td>3.00</td>
+            </tr>
+            <tr>
+              <td>B-</td>
+              <td>2.75</td>
+            </tr>
+            <tr>
+              <td>C+</td>
+              <td>2.50</td>
+            </tr>
+            <tr>
+              <td>C</td>
+              <td>2.25</td>
+            </tr>
+            <tr>
+              <td>D</td>
+              <td>2.00</td>
+            </tr>
+            <tr>
+              <td>F</td>
+              <td>0.00</td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
     <footer>
@@ -133,5 +145,6 @@
     </footer>
     <script src="gpa.js"></script>
     <script src="cgpa.js"></script>
+    <script src="gradingscales.js"></script>
   </body>
 </html>

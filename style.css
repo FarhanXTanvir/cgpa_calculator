@@ -71,15 +71,11 @@ header {
   cursor: pointer;
 }
 
-.gpa-course button:hover {
-  background-color: #555;
-}
-
 .gpa-courses .gpa-course:last-child {
   margin-bottom: 0;
 }
 
-.gpa-courses .gpa-course .remove-course {
+.gpa .remove-course {
   background-color: #ff0000;
   color: #fff;
   border: none;
@@ -87,8 +83,35 @@ header {
   cursor: pointer;
 }
 
-.gpa-courses .gpa-course .remove-course:hover {
-  background-color: #ff3333;
+.gpa .remove-course:hover {
+  background-color: rgba(231, 125, 59, 0.685);
+}
+
+.gpa .add-course {
+  background-color: #4caf50;
+  color: white;
+}
+.gpa .add-course:hover {
+  background-color: #4caf4fc5;
+  color: white;
+}
+
+.gpa .calculate-gpa {
+  background-color: #008cba;
+  color: white;
+}
+.gpa .calculate-gpa:hover {
+  background-color: #008bbab5;
+  color: white;
+}
+
+.gpa .reset {
+  background-color: #ff1100;
+  color: white;
+}
+.gpa .reset:hover {
+  background-color: #ff1100a8;
+  color: white;
 }
 
 /* ------------CGPA------------- */
@@ -130,7 +153,7 @@ header {
   margin-bottom: 0;
 }
 
-.remove-term {
+.cgpa .remove-term {
   background-color: #ff0000;
   color: #fff;
   border: none;
@@ -138,15 +161,15 @@ header {
   cursor: pointer;
 }
 
-.remove-term:hover {
+.cgpa .remove-term:hover {
   background-color: rgba(231, 125, 59, 0.685);
 }
 
-.cgpa .add-term  {
+.cgpa .add-term {
   background-color: #4caf50;
   color: white;
 }
-.cgpa .add-term:hover{
+.cgpa .add-term:hover {
   background-color: #4caf4fc5;
   color: white;
 }
@@ -172,11 +195,18 @@ header {
 .gradScale {
   border: solid black 1px;
   padding: 6%;
+  position: relative;
 }
 
 .gradScale h2 {
   margin: 0;
   padding: 0;
+}
+#gradScale {
+  display: inline-block;
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
 /* Table Styles */
@@ -211,7 +241,7 @@ button:hover {
   background-color: #000000;
 }
 
-.add-course  {
+.add-course {
   background-color: #4caf50;
   color: white;
 }
@@ -240,10 +270,9 @@ footer {
   .gpa-course {
     flex-direction: column;
   }
-  .gpa-course input,
-  .gpa-course select {
-    width: 95%;
-    margin-right: 1%;
+  .gpa-course input {
+    width: 93%;
+    margin-right: 4%;
     margin-bottom: 10px;
   }
   .gpa-course select {
