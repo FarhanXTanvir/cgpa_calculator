@@ -24,6 +24,7 @@ header {
 .gpa {
   background-color: #fff;
   padding: 20px;
+  margin: 15px 0;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -52,6 +53,7 @@ header {
   margin-right: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  min-width: 25%;
 }
 
 .gpa-course select {
@@ -59,16 +61,7 @@ header {
   margin-right: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  min-width: 10%;
-}
-
-.gpa-course button {
-  padding: 10px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  min-width: 15%;
 }
 
 .gpa-courses .gpa-course:last-child {
@@ -151,6 +144,13 @@ header {
 
 .cgpa-terms .cgpa-term:last-child {
   margin-bottom: 0;
+}
+.cgpa-terms .cgpa-term input:nth-child(1),
+.cgpa-terms .cgpa-term input:nth-child(2) {
+  min-width: 20%;
+}
+.cgpa-terms .cgpa-term input:nth-child(3) {
+  min-width: 25%;
 }
 
 .cgpa .remove-term {
@@ -284,8 +284,8 @@ footer {
     flex-direction: column;
   }
   .cgpa-term input {
-    width: 95%;
-    margin-right: 1%;
+    width: 93%;
+    margin-right: 4%;
     margin-bottom: 10px;
   }
 }
