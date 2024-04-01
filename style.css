@@ -1,6 +1,6 @@
 /* Global Styles */
 body {
-  font-family:'Arial Narrow Bold', sans-serif;
+  font-family: "Arial Narrow Bold", sans-serif;
   margin: 0;
   padding: 0;
   background-color: #ffffff;
@@ -27,6 +27,32 @@ header {
   margin: 15px 0;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+.print {
+  display: flex;
+  gap: 5px;
+  background: #816363;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+img {
+  width: 20px;
+  height: 20px;
+}
+.selectGradScale {
+  display: inline-block;
+  position: absolute;
+  top: 5%;
+  right: 2%;
+  font-size: large;
+  font-weight: bold;
+  background-color: #f0f0f0;
 }
 
 .gpa h2 {
@@ -70,7 +96,7 @@ header {
   margin-bottom: 0;
 }
 
-.gpa .remove-course {
+.gpa .remove {
   background-color: #ff0000;
   color: #fff;
   border: none;
@@ -78,7 +104,7 @@ header {
   cursor: pointer;
 }
 
-.gpa .remove-course:hover {
+.gpa .remove:hover {
   background-color: rgba(231, 125, 59, 0.685);
 }
 
@@ -90,36 +116,10 @@ button {
   cursor: pointer;
 }
 
-.gpa .operations {
+.operationsGpa {
   display: flex;
   gap: 10px;
   justify-content: center;
-}
-.gpa .add-course {
-  background-color: #4caf50;
-  color: white;
-}
-.gpa .add-course:hover {
-  background-color: #4caf4fc5;
-  color: white;
-}
-
-.gpa .calculate-gpa {
-  background-color: #008cba;
-  color: white;
-}
-.gpa .calculate-gpa:hover {
-  background-color: #008bbab5;
-  color: white;
-}
-
-.gpa .reset {
-  background-color: #ff1100;
-  color: white;
-}
-.gpa .reset:hover {
-  background-color: #ff1100a8;
-  color: white;
 }
 
 /* ------------CGPA------------- */
@@ -150,6 +150,9 @@ button {
   margin-bottom: 10px;
   padding: 10px;
 }
+.hidden {
+  display: none;
+}
 
 .cgpa-term input {
   flex: 1;
@@ -170,7 +173,7 @@ button {
   min-width: 25%;
 }
 
-.cgpa .remove-term {
+.remove {
   background-color: #ff0000;
   color: #fff;
   border: none;
@@ -178,41 +181,14 @@ button {
   cursor: pointer;
 }
 
-.cgpa .remove-term:hover {
+.remove:hover {
   background-color: rgba(231, 125, 59, 0.685);
 }
 
-.cgpa .operationsCG {
+.cgpa .operationsCgpa {
   display: flex;
   gap: 10px;
   justify-content: center;
-}
-
-.cgpa .add-term {
-  background-color: #4caf50;
-  color: white;
-}
-.cgpa .add-term:hover {
-  background-color: #4caf4fc5;
-  color: white;
-}
-
-.cgpa .calculate-cgpa {
-  background-color: #008cba;
-  color: white;
-}
-.cgpa .calculate-cgpa:hover {
-  background-color: #008bbab5;
-  color: white;
-}
-
-.cgpa .reset-cgpa {
-  background-color: #ff1100;
-  color: white;
-}
-.cgpa .reset-cgpa:hover {
-  background-color: #ff1100a8;
-  color: white;
 }
 
 .gradScale {
@@ -227,13 +203,8 @@ button {
   padding: 0;
 }
 #gradScale {
-  display: inline-block;
-  position: absolute;
-  top: 1.5%;
-  right: 1.5%;
-  font-size: large;
-  font-weight:bold;
-  background-color: #f0f0f0;
+  top: 2%;
+  right: 2%;
 }
 
 /* Table Styles */
@@ -252,6 +223,34 @@ table td {
 
 table th {
   background-color: #f0f0f0;
+}
+
+/* Buttons */
+.add {
+  background-color: #4caf50;
+  color: white;
+}
+.add:hover {
+  background-color: #4caf4fc5;
+  color: white;
+}
+
+.calculate {
+  background-color: #008cba;
+  color: white;
+}
+.calculate:hover {
+  background-color: #008bbab5;
+  color: white;
+}
+
+.reset {
+  background-color: #ff1100;
+  color: white;
+}
+.reset:hover {
+  background-color: #ff1100a8;
+  color: white;
 }
 
 /* Footer Styles */
@@ -278,11 +277,11 @@ footer {
     margin-right: 0;
     margin-bottom: 10px;
   }
-  .remove-course {
+  .remove {
     width: 60%;
     margin: 0 auto;
   }
-  .gpa .operations {
+  .gpa .operationsGpa {
     text-align: center;
   }
   .cgpa-term {
@@ -293,11 +292,7 @@ footer {
     margin-right: 4%;
     margin-bottom: 10px;
   }
-  .cgpa .operationsCG {
+  .cgpa .operationsCgpa {
     text-align: center;
-  }
-  .remove-term {
-    width: 60%;
-    margin: 0 auto;
   }
 }

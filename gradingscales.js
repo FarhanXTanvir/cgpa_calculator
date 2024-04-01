@@ -36,7 +36,7 @@ const gradingScales = {
     "C-": "1.70",
     "D+": "1.30",
     D: "1.00",
-    D: "0.7",
+    D: "0.70",
     F: "0.00",
   },
   AIUB: {
@@ -51,8 +51,7 @@ const gradingScales = {
     F: "0.00",
   },
 };
-document.getElementById("gradScale").addEventListener("change", function (e) {
-  const scale = e.target.value;
+function updateGradingScale(scale) {
   const grades = gradingScales[scale];
 
   const table = document.querySelector(".gradTable table");
@@ -72,4 +71,13 @@ document.getElementById("gradScale").addEventListener("change", function (e) {
   }
 
   gradeDropdown.innerHTML = options; // Replace the dropdown options
+}
+document.getElementById("gradScale").addEventListener("change", function (e) {
+  updateGradingScale(e.target.value);
 });
+
+document
+  .getElementById("gradScaleTop")
+  .addEventListener("change", function (e) {
+    updateGradingScale(e.target.value);
+  });

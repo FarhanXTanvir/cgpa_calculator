@@ -30,59 +30,65 @@
     </header>
     <div class="container">
       <div class="gpa">
+        <!-- Add print page button  -->
+        <button class="print" id="print">
+          Print <img src="img/print.png" alt="Print" />
+        </button>
+
+        <select
+          class="selectGradScale"
+          name="gradScale"
+          id="gradScaleTop"
+          title="You can check out the grade chart below the CGPA sectiion"
+        >
+          <option value="Default">Default</option>
+          <option value="BRAC">BRAC</option>
+          <option value="NSU">NSU</option>
+          <option value="AIUB">AIUB</option>
+        </select>
         <h2 style="text-align: center">GPA</h2>
-        <div class="gpa-courses">
-          <div class="gpa-course">
-            <input type="text" class="course-name" placeholder="Course Name" />
-            <input
-              type="number"
-              class="credit-hours"
-              placeholder="Credit Hours"
-            />
-            <select class="grade">
-              <option value="">Grade</option>
-              <option value="4.0">A+</option>
-              <option value="3.75">A</option>
-              <option value="3.50">A-</option>
-              <option value="3.25">B+</option>
-              <option value="3.00">B</option>
-              <option value="2.75">B-</option>
-              <option value="2.50">C+</option>
-              <option value="2.25">C</option>
-              <option value="2.00">D</option>
-              <option value="0.00">F</option>
-            </select>
-            <button class="remove-course">Remove</button>
-          </div>
-        </div>
-        <div class="operations">
-          <button class="add-course">Add Course</button>
-          <button class="calculate-gpa">Calculate GPA</button>
+        <div class="gpa-courses"></div>
+        <div class="operationsGpa">
+          <button class="add">Add Course</button>
+          <button class="calculate-gpa calculate">Calculate GPA</button>
           <button class="reset">Reset</button>
         </div>
       </div>
       <div class="cgpa">
+        <!-- <button class="toggle" title="">Toggle</button> -->
         <h2 style="text-align: center">CGPA</h2>
-        <div class="cgpa-terms">
-          <div class="cgpa-term">
-            <input type="text" class="term" placeholder="Term" />
-            <input type="number" class="gpa-value" placeholder="GPA" />
-            <input
-              type="number"
-              class="total-credit"
-              placeholder="Total Credit Hours"
-            />
-            <button class="remove-term">Remove</button>
-          </div>
-        </div>
-        <div class="operationsCG">
-          <button class="add-term">Add Term</button>
-          <button class="calculate-cgpa">Calculate CGPA</button>
-          <button class="reset-cgpa">Reset</button>
+        <div class="cgpa-terms"></div>
+        <div class="operationsCgpa">
+          <button class="add">Add Term</button>
+          <button class="calculate-cgpa calculate">Calculate CGPA</button>
+          <button class="reset">Reset</button>
         </div>
       </div>
+
+      <!-- Starts -->
+      <!--
+      <div class="cgpa">
+        <div class="cgpa-terms">
+          <div class="cgpa-term">
+            <div class="gpa-courses"></div>
+            <div class="operationsGpa">
+              <button class="add">Add Course</button>
+              <button class="calculate-gpa calculate">Calculate GPA</button>
+              <button class="reset">Reset</button>
+            </div>
+          </div>
+          <div class="operationsCgpa">
+            <button class="add">Add Term</button>
+            <button class="calculate-cgpa calculate">Calculate CGPA</button>
+            <button class="reset">Reset</button>
+          </div>
+        </div>
+      </div>
+-->
+      <!-- Ends -->
+
       <div class="gradScale">
-        <select name="gradScale" id="gradScale">
+        <select class="selectGradScale" name="gradScale" id="gradScale">
           <option value="Default">Default</option>
           <option value="BRAC">BRAC</option>
           <option value="NSU">NSU</option>
@@ -139,12 +145,18 @@
           </table>
         </div>
       </div>
+      <div class="overview">
+        <!-- I want to have 2 tables created when calculation is done
+
+One table displays all the courses, and their grades. Below that table the GPA is displayed.
+
+Another table displays all terms and their gpa. Below that CGPA is displayed if elements are available-->
+      </div>
     </div>
     <footer>
       <p>&copy; 2024 Farhan Tanvir. All Rights Reserved</p>
     </footer>
-    <script src="gpa.js"></script>
-    <script src="cgpa.js"></script>
+    <script src="script.js"></script>
     <script src="gradingscales.js"></script>
   </body>
 </html>
