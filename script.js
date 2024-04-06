@@ -61,12 +61,12 @@ const termTemplate = (currentIndex) => `
     <span class="toggle-out">
     <div class="course">
       <span class="bind-inputs">
-        <input type="text" class="courseName" placeholder="Course Name" />
+        <input type="text" class="courseName" placeholder="Course Name" >
         <input
           type="number"
           class="courseCredits"
           placeholder="Course Credits"
-        />
+        >
       <select class="courseGrade">
         ${grading.options}
       </select>
@@ -87,12 +87,12 @@ const termTemplate = (currentIndex) => `
 const courseTemplate = () => `
   <div class="course">
     <span class="bind-inputs">
-      <input type="text" class="courseName" placeholder="Course Name" />
+      <input type="text" class="courseName" placeholder="Course Name" >
       <input
         type="number"
         class="courseCredits"
         placeholder="Course Credits"
-      />
+      >
       <select class="courseGrade">
         ${grading.options}
       </select>
@@ -641,8 +641,8 @@ document.addEventListener("click", (event) => {
 const toggleInHtml = `
             <span class="toggle-in">
             <span class="bind-inputs">
-              <input type="number" class="termCredits" placeholder="Term Credits" />
-              <input type="number" class="termGpa" placeholder="GPA" />
+              <input type="number" class="termCredits" placeholder="Term Credits" >
+              <input type="number" class="termGpa" placeholder="GPA" >
               <i 
               class="fa-solid fa-trash remove-term remove" 
               title="Delete the Term"></i>
