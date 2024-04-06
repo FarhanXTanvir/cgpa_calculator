@@ -49,7 +49,7 @@ const showWarningGpa = (term, warning) => {
   term.insertAdjacentHTML("beforeend", warning);
 };
 
-import { grading } from './gradingscales.js';
+import { grading } from "./gradingscales.js";
 
 // For adding new term
 const termTemplate = (currentIndex) => `
@@ -84,7 +84,7 @@ const termTemplate = (currentIndex) => `
   </div>
 `;
 // For adding new course
-const courseTemplate = () =>`
+const courseTemplate = () => `
   <div class="course">
     <span class="bind-inputs">
       <input type="text" class="courseName" placeholder="Course Name" />
@@ -148,7 +148,7 @@ document.addEventListener("click", (event) => {
   }
   if (
     event.target.matches(
-      ".toggle-all, .toggle-format, .add-course, .calculate-gpa, reset-term, remove-term, .remove-course, .calculate-cgpa, .reset-all"
+      ".toggle-all, .toggle-format, .add-course, .calculate-gpa, .reset-term, .remove-term, .remove-course, .calculate-cgpa, .reset-all"
     )
   ) {
     termAll = {
@@ -208,7 +208,7 @@ document.addEventListener("click", (event) => {
     h2 Tasks of add-course: 
     * 1. Select the closest term and fetch the index
     * 2. Insert the courseTemplate after the last course
-    * 3. Increase the courseCount[index] 
+    * 3. Increase the courseCount
 
   */
   if (event.target.matches(".add-course")) {
@@ -236,11 +236,10 @@ document.addEventListener("click", (event) => {
   h2 Tasks of remove-term:
   * 1. Remove the term
   * 2. Decrease the termCount
-  * 3. Decrease the courseCount[index]
+  * 3. Decrease the courseCount
   * 4. Update the data-index of all the terms
   * 5. Update the headings of all the terms
-  * 6. Count the number of courses in each term and update courseCount
-  * 7. Update the currentIndex
+  * 6. Update the currentIndex
   
   */
   if (event.target.matches(".remove-term")) {
@@ -279,7 +278,7 @@ document.addEventListener("click", (event) => {
 
   h2 Tasks of remove-course:
     * 1. Remove the course
-    * 2. Decrease the courseCount[index]
+    * 2. Decrease the courseCount
   
   */
   if (event.target.matches(".remove-course")) {
@@ -355,11 +354,9 @@ document.addEventListener("click", (event) => {
   /* 
     h2 Tasks of reset-all:
 
-    * 1. Remove the previous resultGpa and resultCgpa if exist 
-    * 2. Remove the previous warnings if exists, warningGpaTemplate = ``, warningCgpaTemplate = ``
-    * 3. Remove all the terms
-    * 4. Add the default term
-    * 5. Reset the currentIndex, termCount, courseCount, totalCredits, totalGpaCredits
+    * 1. Remove all the terms
+    * 2. Add the default term
+    * 3. Reset the currentIndex, termList, 
 
   */
 
@@ -384,6 +381,12 @@ document.addEventListener("click", (event) => {
         warning: 0,
       },
     ];
+    termAll = {
+      cgpa: 0,
+      credits: 0,
+      result: 0,
+      warning: 0,
+    };
 
     //todo --------------Debug-----------
     debug();
@@ -661,7 +664,6 @@ const operationsGpaHtml = `
 document.addEventListener("click", (event) => {
   if (event.target.matches(".toggle-format")) {
     const term = event.target.closest(".term");
-    const index = parseInt(term.getAttribute("data-index"));
     const termHeader = term.querySelector(".term-header");
 
     // remove toggle-out if it exists
@@ -746,19 +748,39 @@ document.addEventListener("click", (event) => {
 document.getElementById("export").addEventListener("click", function () {
   const terms = document.querySelectorAll(".term");
   let csvContent = "data:text/csv;charset=utf-8,";
-  csvContent += "Term,Course Name,Course Credits,Course Grade\n"; // column headers
 
   terms.forEach((term, currentIndex) => {
     const courses = term.querySelectorAll(".course");
-    courses.forEach((course) => {
-      const courseName = course.querySelector(".courseName").value;
-      const courseCredits = course.querySelector(".courseCredits").value;
-      const courseGrade = course.querySelector(".courseGrade").value;
-      csvContent += `${
-        currentIndex + 1
-      },${courseName},${courseCredits},${courseGrade}\n`; // data rows
-    });
+    if (courses.length > 0) {
+      csvContent += `Term ${currentIndex + 1}\n`; // column headers
+      csvContent += "Course Name,Course Credits,Course Grade\n"; // column headers
+      courses.forEach((course) => {
+        const courseName = course.querySelector(".courseName").value;
+        const courseCredits = course.querySelector(".courseCredits").value;
+        const courseGrade = course.querySelector(".courseGrade").value;
+        csvContent += `${courseName},${courseCredits},${courseGrade}\n`; // data rows
+      });
+    }
+    csvContent += "\n";
   });
+
+  csvContent += "Results\n";
+  // Add headers for Term, GPA, CGPA
+  csvContent += "\nTerm,GPA,Credits\n";
+
+  // Iterate over termList and termAll to add data to csvContent
+  for (let i = 0; i < termList.length; i++) {
+    const gpa = termList[i].gpa; // Assuming termList[i] is an object with a gpa property
+    const credits = termList[i].credits; // Assuming termAll[i] is an object with a cgpa property
+    csvContent += `${i + 1},${gpa},${credits}\n`;
+  }
+  // Add another header for CGPA and Total Credits
+  csvContent += "\nCGPA,Total Credits\n";
+
+  // Add row for CGPA and Total Credits
+  const cgpa = termAll.cgpa; // Assuming termAll is an object with a cgpa property
+  const totalCredits = termAll.credits; // Assuming termAll is an object with a credits property
+  csvContent += `${cgpa},${totalCredits}\n`;
 
   const encodedUri = encodeURI(csvContent);
   const link = document.createElement("a");
