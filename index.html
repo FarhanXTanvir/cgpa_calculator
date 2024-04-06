@@ -17,7 +17,8 @@
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- SEO for CGPA or GPA Calculator -->
+
+    <!--h1 SEO for CGPA or GPA Calculator -->
     <meta
       name="description"
       content="A CGPA and GPA calculator specifically designed for students in Bangladesh. Easy to use and accurate."
@@ -27,8 +28,22 @@
       content="CGPA, GPA, Calculator, Online, Bangladesh, BD, Academic, Grade"
     />
 
+    <!--h1 Open Graph for CGPA or GPA Calculator -->
+    <meta
+      property="og:title"
+      content="A modern CGPA Calculator for Students in Bangladesh"
+    />
+    <meta
+      property="og:description"
+      content="A CGPA and GPA calculator specifically designed for students in Bangladesh. Easy to use and accurate."
+    />
+    <meta property="og:image" content="URL_TO_IMAGE" />
+    <meta property="og:url" content="https://cgpa-calculator-tool.web.app/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
     <title>CGPA Calculator</title>
-    <link rel="stylesheet" href="style.css" />
+
+    <!--h1 Favicon -->
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -46,70 +61,61 @@
       sizes="16x16"
       href="favicon_io/favicon-16x16.png"
     />
+
+    <!--h1 Site Map -->
     <link rel="manifest" href="favicon_io/site.webmanifest" />
+
+    <!--h1 Style Sheet -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!--h1 font-awesome Fonts -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
     <header>
       <h1>CGPA Calculator</h1>
     </header>
     <div class="container">
-      <div class="gpa">
-        <!-- Add print page button  -->
-        <button class="print" id="print">
-          Print <img src="img/print.png" alt="Print" />
-        </button>
+      <div class="containerTop">
+        <span class="print-csv">
+          <button class="print" id="print">
+            Print <i class="fa-solid fa-print"></i>
+          </button>
+          <button id="export">Export Data</button>
+          <button
+            type="file"
+            class="hidden"
+            id="import"
+            style="padding: 0.2rem; margin-top: 0.2rem; width: 10rem"
+          >
+            Import Data
+          </button>
+          <button class="toggle" id="toggleAll">Toggle All</button>
+        </span>
 
-        <select
-          class="selectGradScale"
-          name="gradScale"
-          id="gradScaleTop"
-          title="You can check out the grade chart below the CGPA sectiion"
-        >
+        <!-- Choose Grading Scale -->
+        <select class="selectGradScale" name="gradScale">
           <option value="Default">Default</option>
           <option value="BRAC">BRAC</option>
           <option value="NSU">NSU</option>
           <option value="AIUB">AIUB</option>
         </select>
-        <h2 style="text-align: center">GPA</h2>
-        <div class="gpa-courses"></div>
-        <div class="operationsGpa">
-          <button class="add">Add Course</button>
-          <button class="calculate-gpa calculate">Calculate GPA</button>
-          <button class="reset">Reset</button>
-        </div>
       </div>
-      <div class="cgpa">
-        <!-- <button class="toggle" title="">Toggle</button> -->
-        <h2 style="text-align: center">CGPA</h2>
-        <div class="cgpa-terms"></div>
+      <div class="terms">
+        <!-- Default Term is added here -->
+        <!-- New Terms are added here one after another -->
         <div class="operationsCgpa">
-          <button class="add">Add Term</button>
+          <button class="add-term add">Add Term</button>
           <button class="calculate-cgpa calculate">Calculate CGPA</button>
-          <button class="reset">Reset</button>
+          <button class="reset-all reset">Reset</button>
         </div>
       </div>
-
-      <!-- Starts -->
-      <!--
-      <div class="cgpa">
-        <div class="cgpa-terms">
-          <div class="cgpa-term">
-            <div class="gpa-courses"></div>
-            <div class="operationsGpa">
-              <button class="add">Add Course</button>
-              <button class="calculate-gpa calculate">Calculate GPA</button>
-              <button class="reset">Reset</button>
-            </div>
-          </div>
-          <div class="operationsCgpa">
-            <button class="add">Add Term</button>
-            <button class="calculate-cgpa calculate">Calculate CGPA</button>
-            <button class="reset">Reset</button>
-          </div>
-        </div>
-      </div>
--->
-      <!-- Ends -->
 
       <div class="gradScale">
         <select class="selectGradScale" name="gradScale" id="gradScale">
@@ -169,18 +175,19 @@
           </table>
         </div>
       </div>
-      <div class="overview">
-        <!-- I want to have 2 tables created when calculation is done
-
-One table displays all the courses, and their grades. Below that table the GPA is displayed.
-
-Another table displays all terms and their gpa. Below that CGPA is displayed if elements are available-->
+      <div class="about">
+        <p>
+          Dear reader, we don't store any of your data, and you don't have to
+          register or login here with your information. Hence, you can safely
+          use our tools.
+        </p>
       </div>
     </div>
     <footer>
       <p>&copy; 2024 Farhan Tanvir. All Rights Reserved</p>
     </footer>
-    <script src="script.js"></script>
-    <script src="gradingscales.js"></script>
+
+    <script type="module" src="script.js"></script>
+    <script type="module" src="gradingscales.js"></script>
   </body>
 </html>

@@ -3,6 +3,7 @@ body {
   font-family: "Arial Narrow Bold", sans-serif;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   background-color: #ffffff;
 }
 
@@ -20,191 +21,130 @@ header {
   margin: 0 auto;
   padding: 20px;
 }
-
-.gpa {
-  background-color: #fff;
-  padding: 20px;
-  margin: 15px 0;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  position: relative;
-}
-.print {
+.containerTop {
   display: flex;
-  gap: 5px;
-  background: #816363;
-  border: none;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 10px 15px;
-  margin: 4px 2px;
-  cursor: pointer;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  height: auto;
+  padding: 10px;
 }
-img {
-  width: 20px;
-  height: 20px;
-}
+
 .selectGradScale {
   display: inline-block;
-  position: absolute;
-  top: 5%;
-  right: 2%;
   font-size: large;
   font-weight: bold;
-  background-color: #f0f0f0;
+  background: #f0f0f0;
+  border-radius: 5%;
 }
 
-.gpa h2 {
+h2 {
   color: #333;
   font-size: 24px;
   margin-bottom: 20px;
 }
 
-.gpa-courses {
+.terms {
+  margin-bottom: 20px;
+  background: #c6c0c0;
+  min-height: 40px;
+  padding: 15px 15px;
+  box-shadow: 0 0 5px black;
+}
+.term {
   margin-bottom: 20px;
   background: whitesmoke;
   min-height: 40px;
   padding: 15px 10px;
 }
 
-.gpa-course {
+.course {
   display: flex;
   background: rgb(234, 229, 229);
-  margin-bottom: 10px;
-  padding: 10px;
+  margin-bottom: 0.5rem;
+  padding: 0.4rem;
 }
-
-.gpa-course input {
-  flex: 1;
-  padding: 10px;
+.term-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: auto;
+}
+.print-csv {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-right: 0.5rem;
+}
+.course input {
+  width: 40%;
+  padding: 2%;
   margin-right: 10px;
-  border: 1px solid #ccc;
+  border: 1.5px solid #000000;
   border-radius: 5px;
   min-width: 25%;
+  font-weight: 600;
 }
 
-.gpa-course select {
-  padding: 2.5px;
-  margin-right: 10px;
-  border: 1px solid #ccc;
+.course select {
+  width: 30%;
+  min-width: 25%;
+  padding: 1.5%;
+  border: 1.5px solid #000000;
   border-radius: 5px;
-  min-width: 15%;
+  font-weight: 600;
 }
-
-.gpa-courses .gpa-course:last-child {
-  margin-bottom: 0;
-}
-
-.gpa .remove {
-  background-color: #ff0000;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.gpa .remove:hover {
-  background-color: rgba(231, 125, 59, 0.685);
-}
-
-/* Button Styles */
-button {
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.bind-inputs {
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 .operationsGpa {
   display: flex;
-  gap: 10px;
+  gap: 1rem;
   justify-content: center;
+  margin-top: 1rem;
 }
 
-/* ------------CGPA------------- */
-.cgpa {
-  margin: 15px 0;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.cgpa h2 {
-  color: #333;
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.cgpa-terms {
-  margin-bottom: 20px;
-  background: whitesmoke;
-  min-height: 40px;
-  padding: 15px 10px;
-}
-
-.cgpa-term {
+.operationsCgpa {
   display: flex;
-  background: rgb(234, 229, 229);
-  margin-bottom: 10px;
-  padding: 10px;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1rem;
 }
+
+.warning {
+  /* Bootstrap warning style */
+  padding: 10px;
+  margin: 20px auto;
+  width: 60%;
+  text-align: center;
+  color: #856404;
+  background-color: #fff3cd;
+  border: 1px solid #ec7e09;
+  border-radius: 0.25rem;
+}
+
 .hidden {
   display: none;
-}
-
-.cgpa-term input {
-  flex: 1;
-  padding: 10px;
-  margin-right: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.cgpa-terms .cgpa-term:last-child {
-  margin-bottom: 0;
-}
-.cgpa-terms .cgpa-term input:nth-child(1),
-.cgpa-terms .cgpa-term input:nth-child(2) {
-  min-width: 20%;
-}
-.cgpa-terms .cgpa-term input:nth-child(3) {
-  min-width: 25%;
-}
-
-.remove {
-  background-color: #ff0000;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.remove:hover {
-  background-color: rgba(231, 125, 59, 0.685);
-}
-
-.cgpa .operationsCgpa {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
 }
 
 .gradScale {
   border: solid black 1px;
   padding: 6%;
-  position: relative;
   margin-top: 10%;
+  position: relative;
 }
 
 .gradScale h2 {
   margin: 0;
   padding: 0;
 }
-#gradScale {
-  top: 2%;
-  right: 2%;
+
+.selectGradScale {
+  display: inline-block;
+  padding: 5px;
 }
 
 /* Table Styles */
@@ -226,21 +166,52 @@ table th {
 }
 
 /* Buttons */
+/* Button Styles */
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 0 5px black;
+}
+button:hover {
+  opacity: 0.8;
+  border: 1px black solid;
+  font-weight: bolder;
+  color: black;
+}
+.remove-course {
+  font-size: 1.5rem;
+  color: red;
+  margin: auto 0.3rem;
+}
+.remove-course:hover {
+  cursor: pointer;
+  opacity: 0.6;
+  border: red 1px solid;
+  /* Circle border */
+  border-radius: 50%;
+}
+.remove-term {
+  font-size: 1.5rem;
+  padding: 0.35rem;
+  margin: auto 0;
+  border: red solid 0.15rem;
+  border-radius: 45%;
+}
+.remove-term:hover {
+  background: rgba(255, 0, 0, 0.741);
+  cursor: pointer;
+}
+
 .add {
   background-color: #4caf50;
-  color: white;
-}
-.add:hover {
-  background-color: #4caf4fc5;
   color: white;
 }
 
 .calculate {
   background-color: #008cba;
-  color: white;
-}
-.calculate:hover {
-  background-color: #008bbab5;
   color: white;
 }
 
@@ -249,10 +220,82 @@ table th {
   color: white;
 }
 .reset:hover {
-  background-color: #ff1100a8;
+  background: #f5473b;
+  border: 1px black solid;
+  color: black;
+  font-weight: 800;
+}
+
+.print {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  background: #1d1010;
+  color: white;
+  font-size: 14px;
+}
+
+.print:hover {
   color: white;
 }
 
+#export {
+  background-color: #1d1010;
+  color: white;
+  padding: 10px 15px;
+  margin: 4px 2px;
+}
+
+.toggle-format {
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+  background: rgb(221, 160, 235);
+  font-weight: 700;
+  box-shadow: 0 0 5px black;
+}
+.toggle {
+  display: inline-block;
+  background: rgb(221, 160, 235);
+  font-weight: 700;
+  box-shadow: 0 0 5px black;
+}
+.toggle-in {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background: rgb(231, 228, 228);
+  justify-content: space-around;
+  padding: auto 5px;
+}
+.toggle-in .termCredits,
+.termGpa {
+  width: 40%;
+  padding: 2%;
+  margin: auto;
+  border: 1.5px solid #000000;
+  border-radius: 5px;
+  min-width: 25%;
+  font-weight: 600;
+}
+.toggle-in button {
+  margin-bottom: auto;
+}
+#gradScale {
+  position: absolute;
+  padding: 5px;
+  top: 15px;
+  right: 15px;
+}
+
+.about {
+  background: rgb(222, 240, 240);
+  font-size: large;
+  margin: 1rem 0;
+  padding: 1rem 0.5rem;
+  border: 1px solid black;
+}
 /* Footer Styles */
 footer {
   text-align: center;
@@ -264,35 +307,72 @@ footer {
 
 /* Responsive Styles */
 @media (max-width: 630px) {
-  .gpa-course {
+  .container {
+    min-width: 65%;
+  }
+  .term {
+    display: flex;
     flex-direction: column;
   }
-  .gpa-course input {
-    width: 93%;
-    margin-right: 4%;
-    margin-bottom: 10px;
+  .term h2 {
+    text-align: center;
   }
-  .gpa-course select {
-    width: 50%;
-    margin-right: 0;
-    margin-bottom: 10px;
+  .course {
+    position: relative;
+    display: flex;
+    flex-direction: column;
   }
-  .remove {
-    width: 60%;
+  .bind-inputs {
+    display: flex;
+    flex-direction: column;
+  }
+  .toggle-in .bind-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    width: 80%;
     margin: 0 auto;
   }
-  .gpa .operationsGpa {
+  .toggle-in .bind-inputs input {
+    width: 90%;
+    margin: 1% 1.5%;
+    padding: 0.7rem;
     text-align: center;
   }
-  .cgpa-term {
-    flex-direction: column;
-  }
-  .cgpa-term input {
-    width: 93%;
-    margin-right: 4%;
-    margin-bottom: 10px;
-  }
-  .cgpa .operationsCgpa {
+  .course input {
+    width: 80%;
+    margin: 1% 2%;
     text-align: center;
+  }
+  .course select {
+    text-align: center;
+    width: 50%;
+    margin: 2% 0%;
+  }
+  .remove-course {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    margin: 0.5rem 0.5rem;
+    font-size: 1.2rem;
+  }
+  .operationsGpa {
+    text-align: center;
+  }
+  .operationsCgpa {
+    display: flex;
+    justify-content: center;
+    gap: 10%;
+    text-align: center;
+  }
+}
+@media print {
+  /* @page {
+    size: landscape;
+  } */
+  body {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
   }
 }

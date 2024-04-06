@@ -1,358 +1,770 @@
-// -------------- GPA Section ----------------
-let courseCount = 1;
+// h1 ----------------- Initialization ----------------- @success Initialization |
+// initialize the termList array of objects
+let currentIndex = 0;
+let termList = [
+  {
+    courseCount: 0,
+    gpa: 0,
+    credits: 0,
+    result: 0,
+    warning: 0,
+  },
+];
+let termAll = {
+  cgpa: 0,
+  credits: 0,
+  result: 0,
+  warning: 0,
+};
 
-const courseTemplate = `
-  <div class="gpa-course">
-    <input type="text" class="courseName" placeholder="Course Name">
-    <input type="number" class="courseCredit" placeholder="Course Credits">
-    <select class="courseGrade">
-      <option value="">Grade</option>
-      <option value="4.0">A+</option>
-      <option value="3.75">A</option>
-      <option value="3.50">A-</option>
-      <option value="3.25">B+</option>
-      <option value="3.00">B</option>
-      <option value="2.75">B-</option>
-      <option value="2.50">C+</option>
-      <option value="2.25">C</option>
-      <option value="2.00">D</option>
-      <option value="0.00">F</option>
-    </select>
-    <button class="remove">Remove</button>
+const termCount = function () {
+  return termList.length;
+};
+
+// Define showResult function
+const showResultGpa = (term, index) => {
+  // Result template
+  const result = `
+        <div class="resultGpa">
+          <table>
+            <tr>
+              <th> Total Credits </th>
+              <td><span class="termCredits">${termList[index].credits.toFixed(
+                2
+              )}</span></td>
+            </tr>
+            <tr>
+              <th>GPA</th>
+              <td><span class="TermGpa">${termList[index].gpa.toFixed(
+                2
+              )}</span></td>
+            </tr>
+          </table>
+        </div>
+        `;
+  term.insertAdjacentHTML("beforeend", result);
+};
+// Define showWarning function
+const showWarningGpa = (term, warning) => {
+  term.insertAdjacentHTML("beforeend", warning);
+};
+
+import { grading } from './gradingscales.js';
+
+// For adding new term
+const termTemplate = (currentIndex) => `
+  <div class="term" data-index="${currentIndex}">
+    <div class="term-header">
+      <h2>Term ${currentIndex + 1}</h2>
+      <button class="toggle-format toggle">Toggle Format</button>
+    </div>
+    <span class="toggle-out">
+    <div class="course">
+      <span class="bind-inputs">
+        <input type="text" class="courseName" placeholder="Course Name" />
+        <input
+          type="number"
+          class="courseCredits"
+          placeholder="Course Credits"
+        />
+      <select class="courseGrade">
+        ${grading.options}
+      </select>
+      </span>
+      <i class="fa-solid fa-circle-xmark remove-course remove"
+        title="Delete the Course"></i>
+    </div>
+    </span>
+    <div class="operationsGpa">
+      <button class="add-course add">Add Course</button>
+      <button class="calculate-gpa calculate">Calculate GPA</button>
+      <button class="reset-term reset">Reset</button>
+      <i class="fa-solid fa-trash remove-term remove" title="Delete the Term"></i>
+    </div>
   </div>
 `;
-// Document onload the class="gpa-courses" with the courseTemplate
-document.addEventListener("DOMContentLoaded", function () {
-  const gpaCourses = document.querySelector(".gpa-courses");
-  gpaCourses.insertAdjacentHTML("beforeend", courseTemplate);
+// For adding new course
+const courseTemplate = () =>`
+  <div class="course">
+    <span class="bind-inputs">
+      <input type="text" class="courseName" placeholder="Course Name" />
+      <input
+        type="number"
+        class="courseCredits"
+        placeholder="Course Credits"
+      />
+      <select class="courseGrade">
+        ${grading.options}
+      </select>
+    </span>
+      <i class="fa-solid fa-circle-xmark remove-course remove"
+        title="Delete the Course"></i>
+  </div>
+`;
+
+// Define a function to debug the courseCount, termCount, currentIndex and warnings
+const debug = () => {
+  console.log("Updates: ");
+  console.log(termList);
+  console.log(termAll);
+};
+
+// Document on load event add a default term before the last child of terms which is operationsCgpa
+document.addEventListener("DOMContentLoaded", () => {
+  currentIndex = 0;
+  termList[0].courseCount = 1;
+  const terms = document.querySelector(".terms");
+  terms.insertAdjacentHTML("afterbegin", termTemplate(currentIndex));
+  debug();
 });
 
-// Calculate GPA
-document.querySelector(".calculate-gpa").addEventListener("click", function () {
-  let courses = []; // Array to store the courses
-  let emptyFieldsGpa = false; // Flag to check if any field is empty
-  let totalGradePoints = 0;
-  let totalCredits = 0;
-
-  // Remove existing warnings if any
-  document.querySelectorAll(".warningGpa").forEach(function (warning) {
-    warning.remove();
-  });
-
-  // Remove existing result if any
-  const existingResultGpa = document.querySelector(".resultGpa");
-  if (existingResultGpa) {
-    existingResultGpa.remove();
-  }
-
-  // Get all the course names, credits, and grades
-  let courseNames = Array.from(document.querySelectorAll(".courseName"));
-  let courseCredits = Array.from(document.querySelectorAll(".courseCredit"));
-  let courseGrades = Array.from(document.querySelectorAll(".courseGrade"));
-
-  // Loop through all the courses
-  for (let i = 0; i < courseNames.length; i++) {
-    // Check if the inputs are valid, if yes store them in an object and add it to the array else show a warning
-    if (
-      courseNames[i].value === "" ||
-      courseCredits[i].value === "" ||
-      courseGrades[i].value === ""
-    ) {
-      emptyFieldsGpa = true;
-      const warningGpaTemplate = `
-        <div class="warningGpa" style="padding: 15px; margin: 8px; background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; margin-bottom: 20px; border-radius: 4px; text-align: center; position: relative;">
-          Please fill out all fields for each course.
-          <button class="close-warning" style="position: absolute; top: 0; right: 0; border: none; background: none; color: #721c24; font-size: 20px; padding: 10px;">&times;</button>
-        </div>
-      `;
-      document
-        .querySelector(".operationsGpa")
-        .insertAdjacentHTML("afterend", warningGpaTemplate);
-      return;
-    } else if (courseCredits[i].value <= 0 || courseCredits[i].value > 4) {
-      const warningGpaTemplate = `
-          <div class="warningGpa" style="padding: 15px; margin: 8px; background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; margin-bottom: 20px; border-radius: 4px; text-align: center; position: relative;">
-            Please enter a valid credit hours between 0 and 4.
-            <button class="close-warning" style="position: absolute; top: 0; right: 0; border: none; background: none; color: #721c24; font-size: 20px; padding: 10px;">&times;</button>
-          </div>
-        `;
-      document
-        .querySelector(".operationsGpa")
-        .insertAdjacentHTML("afterend", warningGpaTemplate);
+// Removing Past @review Remove result, warning
+// => See if we repeat things unnecessarily @bug
+document.addEventListener("click", (event) => {
+  if (
+    event.target.matches(
+      ".toggle-format, .add-course, .calculate-gpa, .reset-term, .remove-term, .remove-course"
+    )
+  ) {
+    const term = event.target.closest(".term");
+    // Fetch the index of the term
+    const index = parseInt(term.getAttribute("data-index"));
+    if (isNaN(index)) {
+      console.error("Invalid term index:", term.getAttribute("data-index"));
       return;
     } else {
-      // Create an object for the course
-      let course = {
-        name: courseNames[i].value,
-        credits: parseFloat(courseCredits[i].value),
-        grade: parseFloat(courseGrades[i].value),
-      };
-
-      // Add the course to the array
-      courses.push(course);
-
-      totalGradePoints += courses[i].grade * courses[i].credits;
-      totalCredits += courses[i].credits;
+      // Remove the previous resultGpa if it exists
+      termList[index].result = 0;
+      const resultGpa = term.querySelector(".resultGpa");
+      if (resultGpa) {
+        resultGpa.remove();
+      }
+      termList[index].warning = 0;
+      const warningGpa = term.querySelector(".warningGpa");
+      if (warningGpa) {
+        warningGpa.remove();
+      }
     }
   }
-  let gpa = totalGradePoints / totalCredits;
+  if (
+    event.target.matches(
+      ".toggle-all, .toggle-format, .add-course, .calculate-gpa, reset-term, remove-term, .remove-course, .calculate-cgpa, .reset-all"
+    )
+  ) {
+    termAll = {
+      cgpa: 0,
+      credits: 0,
+      result: 0,
+      warning: 0,
+    };
+    // Remove the previous resultCgpa if it exists
+    const resultCgpa = document.querySelector(".resultCgpa");
+    if (resultCgpa) {
+      resultCgpa.remove();
+    }
+    // remove the previous warnings if exists
+    const warningCgpa = document.querySelector(".warningCgpa");
+    if (warningCgpa) {
+      warningCgpa.remove();
+    }
+  }
+});
 
-  // Result template
-  const resultGpaTemplate = `
-      <div class="resultGpa">
+document.addEventListener("click", (event) => {
+  // h1 --------------------- Add --------------------------------------
+  // h2 ---------------- Add Term ----------------- @success Add Term |
+  /* 
+    h2 Tasks of add-term: 
+    * 1. Increase the currentIndex
+    * 2. Insert the termTemplate before the beginning of the operationsCgpa
+    * 3. Add the courseCount = 1
+
+    */
+  if (event.target.matches(".add-term")) {
+    // * 1. Increase the currentIndex
+    currentIndex++;
+
+    // * 2. Insert the termTemplate before the beginning of the operationsCgpa
+    const operationsCgpa = document.querySelector(".operationsCgpa");
+    operationsCgpa.insertAdjacentHTML(
+      "beforebegin",
+      termTemplate(currentIndex)
+    );
+
+    // * 3. Initialize termList object for that index
+    termList[currentIndex] = {
+      courseCount: 1,
+      gpa: 0,
+      credits: 0,
+      result: 0,
+      warning: 0,
+    };
+    //todo --------------Debug-----------
+    debug();
+  }
+
+  // h1 ---------------- Add Course ----------------- @success Add Course |
+  /* 
+    h2 Tasks of add-course: 
+    * 1. Select the closest term and fetch the index
+    * 2. Insert the courseTemplate after the last course
+    * 3. Increase the courseCount[index] 
+
+  */
+  if (event.target.matches(".add-course")) {
+    // * 1. Select the closest term and fetch the index
+    const term = event.target.closest(".term");
+    const index = parseInt(term.getAttribute("data-index"));
+    if (isNaN(index)) {
+      console.error("Invalid term index:", term.getAttribute("data-index"));
+      return;
+    } else {
+      // * 2. Insert the courseTemplate before the end of the toggle-out
+      const toggleOut = term.querySelector(".toggle-out");
+      toggleOut.insertAdjacentHTML("beforeend", courseTemplate());
+      termList[index].courseCount++;
+
+      //todo --------------Debug-----------
+      debug();
+    }
+  }
+
+  // h1 ---------------- Remove -----------------------------------------------
+
+  // rh ---------------- Remove the term ----------------- @success Remove Term |
+  /* 
+  h2 Tasks of remove-term:
+  * 1. Remove the term
+  * 2. Decrease the termCount
+  * 3. Decrease the courseCount[index]
+  * 4. Update the data-index of all the terms
+  * 5. Update the headings of all the terms
+  * 6. Count the number of courses in each term and update courseCount
+  * 7. Update the currentIndex
+  
+  */
+  if (event.target.matches(".remove-term")) {
+    const term = event.target.closest(".term");
+    const index = parseInt(term.getAttribute("data-index"));
+
+    // * 1. Remove the term
+    // * 2. Decrease the termCount
+    if (isNaN(index)) {
+      console.error("Invalid term index:", term.getAttribute("data-index"));
+      return;
+    }
+    if (currentIndex === 0) {
+      console.log("Cannot remove term: only one term left");
+    } else {
+      // Removes the term from html and termList
+      term.remove();
+      termList.splice(index, 1);
+
+      // * 4. Update the data-index of all the terms
+      const terms = document.querySelectorAll(".term");
+      const n = terms.length;
+      currentIndex = n - 1;
+      for (let i = index; i < n; i++) {
+        terms[i].setAttribute("data-index", i);
+        terms[i].querySelector(".term-header h2").textContent = `Term ${i + 1}`;
+      }
+    }
+
+    //todo --------------Debug-----------
+    debug();
+  }
+
+  // rh ---------------- Remove the course ----------------- @success Remove Course |
+  /* 
+
+  h2 Tasks of remove-course:
+    * 1. Remove the course
+    * 2. Decrease the courseCount[index]
+  
+  */
+  if (event.target.matches(".remove-course")) {
+    const course = event.target.closest(".course");
+    const term = course.closest(".term");
+    const index = parseInt(term.getAttribute("data-index"));
+    if (isNaN(index)) {
+      console.error("Invalid term index:", term.getAttribute("data-index"));
+      return;
+    } else if (termList[index].courseCount === 1) {
+      console.log(
+        "Cannot remove course: only one course left in term " + (index + 1)
+      );
+      return;
+    } else {
+      // * 1. Remove the course
+      course.remove();
+
+      // * 2. Decrease the termList[index]
+      termList[index].courseCount--;
+    }
+
+    //todo --------------Debug-----------
+    debug();
+  }
+
+  // h1 ------------------------------------ Reset --------------------------
+
+  // h2 ---------------- Reset the term ----------------- @success Reset Term |
+  /* 
+  h2 Tasks of reset-term:
+
+  => Select the closest term and fetch all the courses
+  * 1. Remove the previous resultGpa if it exists 
+  * 2. Remove the previous warningGpa if exists, warningGpaTemplate = ``
+  * 3. Remove all the courses
+  * 4. Add the default course inside the term in the beginning of the toggle-out
+  * 5. Reset the courseCount[index] = 1
+
+  */
+
+  // ! Bug: term => reset => toggle-out => output bug
+
+  if (event.target.matches(".reset-term")) {
+    const term = event.target.closest(".term");
+    const courses = term.querySelectorAll(".course");
+
+    // remove all courses
+    courses.forEach((course) => {
+      course.remove();
+    });
+
+    // New Additions
+    // Add default course inside the term in the beginning of the toggle-out
+    const toggleOut = term.querySelector(".toggle-out");
+    toggleOut.insertAdjacentHTML("afterbegin", courseTemplate());
+
+    // Reset the data of the term
+    const index = parseInt(term.getAttribute("data-index"));
+    termList[index] = {
+      courseCount: 1,
+      gpa: 0,
+      credits: 0,
+      result: 0,
+      warning: 0,
+    };
+
+    //todo --------------Debug-----------
+    debug();
+  }
+
+  // rh ---------------- Reset All ----------------- @success Reset All |
+  /* 
+    h2 Tasks of reset-all:
+
+    * 1. Remove the previous resultGpa and resultCgpa if exist 
+    * 2. Remove the previous warnings if exists, warningGpaTemplate = ``, warningCgpaTemplate = ``
+    * 3. Remove all the terms
+    * 4. Add the default term
+    * 5. Reset the currentIndex, termCount, courseCount, totalCredits, totalGpaCredits
+
+  */
+
+  if (event.target.matches(".reset-all")) {
+    // * 1. Remove all the terms
+    const terms = document.querySelectorAll(".term");
+    terms.forEach((term) => term.remove());
+
+    // * 2. Add the default term after the beginning of the class terms
+    currentIndex = 0;
+    document
+      .querySelector(".terms")
+      .insertAdjacentHTML("afterbegin", termTemplate(currentIndex));
+
+    // * 3. Reset data of all terms
+    termList = [
+      {
+        courseCount: 1,
+        gpa: 0,
+        credits: 0,
+        result: 0,
+        warning: 0,
+      },
+    ];
+
+    //todo --------------Debug-----------
+    debug();
+  }
+  // h1 ----------------- Calculate ---------------------------------------------------------------
+
+  // h1 ----------------- Calculate GPA -------------------------------- @section Calculate GPA |
+  /* Tasks of calculate-gpa 
+
+  * 1. Remove the previous warningGpa if it exists, warningGpaTemplate = ``
+  * 2. Remove the previous resultGpa if it exists
+  * 3. Check if the fields are empty
+  * 4. Check if the credits are between 0 and 4
+  * 5. Display the warning if any, return 
+  * 6. Otherwise, Calculate the GPA
+  * 7. Display the result
+  * 8. Add the result to the totalGpaCredits for CGPA calculation
+  * 9. Add the credits to the totalCredits for CGPA calculation
+  
+  */
+  if (event.target.matches(".calculate-gpa")) {
+    let totalGradeCredits = 0;
+    let warning = "";
+    termList.warning = 0;
+
+    // select the closest term
+    const term = event.target.closest(".term");
+
+    // fetch the index of the term
+    const index = parseInt(term.getAttribute("data-index"));
+    if (isNaN(index)) {
+      console.error("Invalid term index:", term.getAttribute("data-index"));
+      return;
+    } else {
+      termList[index] = {
+        courseCount: termList[index].courseCount,
+        gpa: 0,
+        credits: 0,
+        result: 0,
+        warning: 0,
+      };
+
+      // select all the courses
+      const courses = term.querySelectorAll(".course");
+      if (courses) {
+        courses.forEach((course) => {
+          // Fetched the values of courseCredits and courseGrade
+          const credits = parseFloat(
+            course.querySelector(".courseCredits").value
+          );
+          const grade = parseFloat(course.querySelector(".courseGrade").value);
+
+          // Check if any field is empty
+          if (isNaN(credits) || isNaN(grade)) {
+            termList[index].warning = 1;
+            termAll.warning = 1;
+            warning = `
+          <div class="warningGpa warning">
+            <p>Please fill all the fields</p>
+          </div>
+        `;
+            return;
+          } else if (credits <= 0 || credits > 4) {
+            // Check if credits are between 0 and 4
+            termList[index].warning = 1;
+            termAll.warning = 1;
+            warning = `
+          <div class="warningGpa warning">
+            <p>Credits should be between 0 and 4</p>
+          </div>
+        `;
+            return;
+          } else {
+            termList[index].credits += credits;
+            totalGradeCredits += credits * grade;
+          }
+        });
+      } else {
+        console.error("Invalid term: ", term.getAttribute("data-index"));
+      }
+
+      if (termList[index].warning) {
+        term.insertAdjacentHTML("beforeend", warning);
+        debug();
+        return;
+      } else {
+        termList[index].gpa = totalGradeCredits / termList[index].credits;
+
+        // Result template
+        termList[index].result = 1;
+        let result = `
+        <div class="resultGpa">
+          <table>
+            <tr>
+              <th> Total Credits </th>
+              <td><span class="termCredits">${termList[index].credits.toFixed(
+                2
+              )}</span></td>
+            </tr>
+            <tr>
+              <th>GPA</th>
+              <td><span class="TermGpa">${termList[index].gpa.toFixed(
+                2
+              )}</span></td>
+            </tr>
+          </table>
+        </div>
+        `;
+        term.insertAdjacentHTML("beforeend", result);
+        debug();
+      }
+    }
+  }
+
+  // h1 ----------------- Calculate CGPA ----------------------- @section Calculate CGPA |
+  /* Tasks of calculate-cgpa
+
+  * 1. Remove the previous warningCgpa if it exists, warningCgpaTemplate = ``
+  * 2. Remove the previous resultCgpa if it exists
+  * 3. Iterate over all terms where: 
+      % For each term 
+        => If toggle-in exists, fetch the values of termCredits and termGpa
+          ?  Remove the previous warningGpa if it exists
+          ?  Remove the previous resultGpa if it exists
+          ?  If any field is empty, display the warning, return
+          ?  If termCredits <= 0, display the warning, return
+          ?  If termGpa < 0 or termGpa > 4, display the warning, return
+          ?  Add termCredits to totalCredits and termCredits * termGpa to totalGpaCredits
+
+        => If toggle-out exists, click calculate-gpa, rest will be handled by calculate-gpa
+
+  * 4. If any warning exists, display the warning, return
+  * 5. Calculate the CGPA = totalGpaCredits / totalCredits
+  * 6. Display the result
+
+  */
+
+  if (event.target.matches(".calculate-cgpa")) {
+    let warning = "";
+
+    const terms = document.querySelectorAll(".term");
+    terms.forEach((term) => {
+      if (term.querySelector(".toggle-in")) {
+        // fetch the index of the term
+        const index = parseInt(term.getAttribute("data-index"));
+        if (isNaN(index)) {
+          console.error("Invalid term index:", term.getAttribute("data-index"));
+          return;
+        }
+        const termCredits = parseFloat(
+          term.querySelector(".toggle-in .termCredits").value
+        );
+        const gpa = parseFloat(term.querySelector(".toggle-in .termGpa").value);
+        // check if any field is empty
+        if (isNaN(termCredits) || isNaN(gpa)) {
+          termList[index].warning = 1;
+          termAll.warning = 1;
+          warning = `
+            <div class="warningGpa warning">
+              <p>Please fill all the fields</p>
+            </div>
+          `;
+        }
+        // check if 0 <= termGpa < 4 and 0 <= termCredits
+        else if (termCredits <= 0) {
+          termList[index].warning = 1;
+          termAll.warning = 1;
+          warning = `
+            <div class="warningGpa warning">
+              <p>Term Credits should be more than 0</p>
+            </div>
+          `;
+        }
+        // check if 0 <= termGpa < 4 and 0 <= termCredits
+        else if (gpa < 0 || gpa > 4) {
+          termList[index].warning = 1;
+          termAll.warning = 1;
+          warning = `
+            <div class="warningGpa warning">
+              <p>GPA should be between 0 and 4</p>
+            </div>
+          `;
+        }
+        if (termList[index].warning) {
+          showWarningGpa(term, warning);
+          return;
+        } else {
+          termList[index].credits = termCredits;
+          termList[index].gpa = gpa;
+          termList[index].result = 1;
+        }
+      } else {
+        // Click calculate-gpa for each term
+        const calculateGpa = term.querySelector(".calculate-gpa");
+        calculateGpa.click();
+        const index = parseInt(term.getAttribute("data-index"));
+        if (termList[index].warning) return;
+      }
+    });
+    if (termAll.warning) {
+      warning = `
+          <div class="warningCgpa warning">
+            <p>Please resolve all the warnings</p>
+          </div>
+        `;
+      document.querySelector(".terms").insertAdjacentHTML("beforeend", warning);
+
+      debug();
+    } else {
+      // Calculate the CGPA
+      // For each of termList, add the termCredits to totalCredits and termCredits * termGpa to totalGpaCredits
+      let totalGpaCredits = 0;
+      termList.forEach((term) => {
+        termAll.credits += term.credits;
+        totalGpaCredits += term.credits * term.gpa;
+      });
+      termAll.cgpa = totalGpaCredits / termAll.credits;
+      // Result template
+      termAll.result = 1;
+      const result = `
+      <div class="resultCgpa">
         <table>
           <tr>
             <th>Total Credits </th>
-            <td><span class="totalCredits">${totalCredits.toFixed(
+            <td><span class="totalCredits">${termAll.credits.toFixed(
               2
             )}</span></td>
           </tr>
           <tr>
-            <th>Total Grade Points</th>
-            <td><span class="totalGradePoints">${totalGradePoints.toFixed(
-              2
-            )}</span></td>
-          </tr>
-          <tr>
-            <th>GPA</th>
-            <td><span class="gpa-result">${gpa.toFixed(2)}</span></td>
+            <th>CGPA</th>
+            <td><span class="cgpa">${termAll.cgpa.toFixed(2)}</span></td>
           </tr>
         </table>
       </div>
     `;
-
-  // Add new result
-  document
-    .querySelector(".operationsGpa")
-    .insertAdjacentHTML("afterend", resultGpaTemplate);
+      document.querySelector(".terms").insertAdjacentHTML("afterend", result);
+      debug();
+    }
+  }
 });
 
-// -------------- GPA Section Ends----------------
+// h1 ---------------- Toggle ----------------|---------------------- @success Toggle format |
+/* 
+  h2 Tasks of toggle-format: 
+  * 1. Remove the previous resultGpa if it exists 
+  * 2. Remove the previous warningGpa if it exists, warningGpaTemplate = ``
+  * 3. If toggle-out exists, remove the toggle-out and operationsGpa
+  * 4. If toggle-in exists, remove the toggle-in and insert the toggle-out after the term-header
+  * 5. Insert the operationsGpaHtml
 
-// -------------- CGPA Section -------------------
-// -------------------------------------------------
-let termCount = 1;
-
-const termTemplate = `
-    <div class="cgpa-term">
-      <input type="text" class="termNo" placeholder="Term No." />
-      <input type="number" class="termCredits" placeholder="Term Credits" />
-      <input type="number" class="termGPA" placeholder="GPA" />
-      <button class="remove">Remove</button>
+*/
+const toggleInHtml = `
+            <span class="toggle-in">
+            <span class="bind-inputs">
+              <input type="number" class="termCredits" placeholder="Term Credits" />
+              <input type="number" class="termGpa" placeholder="GPA" />
+              <i 
+              class="fa-solid fa-trash remove-term remove" 
+              title="Delete the Term"></i>
+            </span>
+          </span>
+          `;
+let toggleOutHtml = ``;
+const operationsGpaHtml = `
+      <div class="operationsGpa">
+      <button class="add-course add">Add Course</button>
+      <button class="calculate-gpa calculate">Calculate GPA</button>
+      <button class="reset-term reset">Reset</button>
+      <i 
+      class="fa-solid fa-trash remove-term remove" 
+      title="Delete the Term"></i>
     </div>
-`;
-// Document onload the class="cgpa-terms" with the termTemplate
-document.addEventListener("DOMContentLoaded", function () {
-  const cgpaTerms = document.querySelector(".cgpa-terms");
-  cgpaTerms.insertAdjacentHTML("beforeend", termTemplate);
+  `;
+
+document.addEventListener("click", (event) => {
+  if (event.target.matches(".toggle-format")) {
+    const term = event.target.closest(".term");
+    const index = parseInt(term.getAttribute("data-index"));
+    const termHeader = term.querySelector(".term-header");
+
+    // remove toggle-out if it exists
+    const toggleOut = term.querySelector(".toggle-out");
+    if (toggleOut) {
+      toggleOutHtml = toggleOut.outerHTML;
+      toggleOut.remove();
+
+      const operationsGpa = term.querySelector(".operationsGpa");
+      operationsGpa.remove();
+
+      // insert the following code after the term-header
+      termHeader.insertAdjacentHTML("afterend", toggleInHtml);
+    } else {
+      const toggleIn = term.querySelector(".toggle-in");
+      if (toggleIn) {
+        // remove toggle-in if it exists
+        toggleIn.remove();
+
+        // insert the toggle-out after the term-header
+        termHeader.insertAdjacentHTML("afterend", toggleOutHtml);
+
+        // Insert operationsGpaHtml
+        term.insertAdjacentHTML("beforeend", operationsGpaHtml);
+      } else alert("Nothing to toggle");
+    }
+    //todo --------------Debug-----------
+    debug();
+  }
+});
+// h1---------------------- @section Toggle All
+// If id toggleAll is clicked, click the toggle-format for all the terms
+document.getElementById("toggleAll").addEventListener("click", function () {
+  const terms = document.querySelectorAll(".term");
+  terms.forEach((term) => {
+    const toggleFormat = term.querySelector(".toggle-format");
+    toggleFormat.click();
+  });
 });
 
-/*----------------------------- All clear till now -----------------*/
-// Calculate CGPA
-document
-  .querySelector(".calculate-cgpa")
-  .addEventListener("click", function () {
-    let terms = []; // Array to store the courses
-    let emptyFieldsCgpa = false; // Flag to check if any field is empty
-    let totalGpaCredits = 0;
-    let totalCredits = 0;
+// h1 ---------------- Print the document ----------------- @review Print |
+// print the class= "terms" when print button is clicked
+/*
+document.getElementById("print").addEventListener("click", function () {
+  const terms = document.querySelector(".terms").outerHTML;
+  const printWindow = window.open("", "_blank");
+  printWindow.document.write("<html><head><title>Print</title>");
 
-    // Remove existing warnings if any
-    document.querySelectorAll(".warningCgpa").forEach(function (warningCgpa) {
-      warningCgpa.remove();
-    });
-
-    // Remove existing result if any
-    const existingResultCgpa = document.querySelector(".resultCgpa");
-    if (existingResultCgpa) {
-      existingResultCgpa.remove();
+  // Get stylesheets of the current document and write them into the new window
+  Array.from(document.styleSheets).forEach(function (styleSheet) {
+    if (styleSheet.href) {
+      printWindow.document.write(
+        '<link rel="stylesheet" href="' + styleSheet.href + '">'
+      );
+    } else {
+      printWindow.document.write("<style>" + styleSheet.cssText + "</style>");
     }
-
-    // Get all the course names, credits, and grades
-    let termNo = Array.from(document.querySelectorAll(".termNo"));
-    let termCredits = Array.from(document.querySelectorAll(".termCredits"));
-    let termGPA = Array.from(document.querySelectorAll(".termGPA"));
-
-    // Loop through all the courses
-    for (let i = 0; i < termNo.length; i++) {
-      // Check if the inputs are valid, if yes store them in an object and add it to the array else show a warning
-      if (
-        termNo[i].value === "" ||
-        termCredits[i].value === "" ||
-        termGPA[i].value === ""
-      ) {
-        emptyFieldsCgpa = true;
-        const warningCgpaTemplate = `
-        <div class="warningCgpa" style="padding: 15px; margin: 8px; background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; margin-bottom: 20px; border-radius: 4px; text-align: center; position: relative;">
-          Please fill out all fields for each term.
-          <button class="close-warning" style="position: absolute; top: 0; right: 0; border: none; background: none; color: #721c24; font-size: 20px; padding: 10px;">&times;</button>
-        </div>
-      `;
-        document
-          .querySelector(".operationsCgpa")
-          .insertAdjacentHTML("afterend", warningCgpaTemplate);
-        return;
-      } else if (termGPA[i].value <= 0 || termGPA[i].value > 4) {
-        const warningCgpaTemplate = `
-          <div class="warningCgpa" style="padding: 15px; margin: 8px; background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; margin-bottom: 20px; border-radius: 4px; text-align: center; position: relative;">
-            Please enter a valid GPA between 0 and 4.
-            <button class="close-warning" style="position: absolute; top: 0; right: 0; border: none; background: none; color: #721c24; font-size: 20px; padding: 10px;">&times;</button>
-          </div>
-        `;
-        document
-          .querySelector(".operationsCgpa")
-          .insertAdjacentHTML("afterend", warningCgpaTemplate);
-        return;
-      } else {
-        // Create an object for the course
-        let term = {
-          no: termNo[i].value,
-          credits: parseFloat(termCredits[i].value),
-          gpa: parseFloat(termGPA[i].value),
-        };
-
-        // Add the course to the array
-        terms.push(term);
-
-        totalGpaCredits += terms[i].gpa * terms[i].credits;
-        totalCredits += terms[i].credits;
-      }
-    }
-    let cgpa = totalGpaCredits / totalCredits;
-
-    // Result template
-    const resultCgpaTemplate = `
-      <div class="resultCgpa">
-        <h2 style="text-align: center;">CGPA: ${cgpa.toFixed(2)}</h2>
-      </div>
-    `;
-
-    // Add new result
-    document
-      .querySelector(".operationsCgpa")
-      .insertAdjacentHTML("afterend", resultCgpaTemplate);
   });
 
-// -------------- CGPA Section Ends ----------------
-
-// ---------------------------- Buttons ------------------------------
-// Add Element
-document.addEventListener("click", function (event) {
-  if (event.target && event.target.classList.contains("add")) {
-    // Check if the parent element is operations or operationsCG
-    if (event.target.parentElement.classList.contains("operationsGpa")) {
-      // Add the courseTemplate and increment courseCount
-      const gpaCourses = document.querySelector(".gpa-courses");
-      gpaCourses.insertAdjacentHTML("beforeend", courseTemplate);
-      courseCount++;
-    } else if (
-      event.target.parentElement.classList.contains("operationsCgpa")
-    ) {
-      // Add the termTemplate and increment termCount
-      const cgpaTerms = document.querySelector(".cgpa-terms");
-      cgpaTerms.insertAdjacentHTML("beforeend", termTemplate);
-      termCount++;
-    }
-  }
+  printWindow.document.write("</head><body>");
+  printWindow.document.write(terms);
+  printWindow.document.write("</body></html>");
+  printWindow.document.close();
+  printWindow.print();
 });
+*/
 
-// Remove or Reset Element on click event
-document.addEventListener("click", function (event) {
-  if (event.target && event.target.classList.contains("remove")) {
-    // Check if the parent element is a gpa-course or a cgpa-term
-    if (event.target.parentElement.classList.contains("gpa-course")) {
-      // Only remove the course if there is more than one
-      if (courseCount > 1) {
-        event.target.parentElement.remove();
-        courseCount--;
-      }
-    } else if (event.target.parentElement.classList.contains("cgpa-term")) {
-      // Only remove the term if there is more than one
-      if (termCount > 1) {
-        event.target.parentElement.remove();
-        termCount--;
-      }
-    }
-  } else if (event.target && event.target.classList.contains("reset")) {
-    // Check if the parent element is operationsGpa or operationsCgpa
-    if (event.target.parentElement.classList.contains("operationsGpa")) {
-      // Remove resultGpa div if any
-      const resultGpa = document.querySelector(".resultGpa");
-      if (resultGpa) {
-        resultGpa.remove();
-      }
-
-      // Remove existing GPA warnings if any
-      const warningGpa = document.querySelector(".warningGpa");
-      if (warningGpa) {
-        warningGpa.remove();
-      }
-
-      // Remove all existing gpa-courses if any
-      document.querySelectorAll(".gpa-course").forEach(function (item) {
-        item.remove();
-      });
-
-      // Reset courseCount
-      courseCount = 0;
-
-      // Add a new default course-gpa
-      document.querySelector(".operationsGpa .add").click();
-    } else if (
-      event.target.parentElement.classList.contains("operationsCgpa")
-    ) {
-      // Remove resultCgpa div if any
-      const resultCgpa = document.querySelector(".resultCgpa");
-      if (resultCgpa) {
-        resultCgpa.remove();
-      }
-
-      // Remove existing CGPA warnings if any
-      const warningCgpa = document.querySelector(".warningCgpa");
-      if (warningCgpa) {
-        warningCgpa.remove();
-      }
-
-      // Remove all existing cgpa-terms
-      document.querySelectorAll(".cgpa-term").forEach(function (item) {
-        item.remove();
-      });
-
-      // Reset termCount
-      termCount = 0;
-
-      // Add a new default term-cgpa
-      document.querySelector(".operationsCgpa .add").click();
-    }
-  }
-});
-
-// Print the result
+// print only window when print button clicked
 document.getElementById("print").addEventListener("click", function () {
   window.print();
 });
 
-// Add event listener to Calculate from GPA button using event delegation
-// Define the template
-let termsTemplate = `
-  <div class="cgpa-term">
-  ${courseTemplate}
-    <div class="operationsGpa">
-      <button class="add">Add Course</button>
-      <button class="calculate-Gpa calculate">Calculate GPA</button>
-      <button class="reset">Reset</button>
-    </div>
-  </div>
-`;
-// When the toggle button is clicked
-/*
-document.querySelector(".toggle").addEventListener("click", function () {
-  
-});
-*/
-// Add event listener to close button using event delegation
-document.body.addEventListener("click", function (e) {
-  if (e.target && e.target.classList.contains("close-warning")) {
-    e.target.parentElement.remove();
+// close warning when close button is clicked
+document.addEventListener("click", (event) => {
+  if (event.target.matches(".warning")) {
+    event.target.remove();
   }
+});
+
+// h1 ---------------- Export the data ----------------- @review Export
+// export the data to a JSON file
+document.getElementById("export").addEventListener("click", function () {
+  const terms = document.querySelectorAll(".term");
+  let csvContent = "data:text/csv;charset=utf-8,";
+  csvContent += "Term,Course Name,Course Credits,Course Grade\n"; // column headers
+
+  terms.forEach((term, currentIndex) => {
+    const courses = term.querySelectorAll(".course");
+    courses.forEach((course) => {
+      const courseName = course.querySelector(".courseName").value;
+      const courseCredits = course.querySelector(".courseCredits").value;
+      const courseGrade = course.querySelector(".courseGrade").value;
+      csvContent += `${
+        currentIndex + 1
+      },${courseName},${courseCredits},${courseGrade}\n`; // data rows
+    });
+  });
+
+  const encodedUri = encodeURI(csvContent);
+  const link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", "CgpaSheet.csv");
+  document.body.appendChild(link); // Required for Firefox
+
+  link.click(); // This will download the data as a .csv file
 });
