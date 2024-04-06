@@ -189,19 +189,17 @@ button:hover {
 .remove-course:hover {
   cursor: pointer;
   opacity: 0.6;
-  border: red 1px solid;
-  /* Circle border */
-  border-radius: 50%;
 }
 .remove-term {
   font-size: 1.5rem;
   padding: 0.35rem;
   margin: auto 0;
-  border: red solid 0.15rem;
+  border: red solid 0.11rem;
   border-radius: 45%;
 }
 .remove-term:hover {
   background: rgba(255, 0, 0, 0.741);
+  border: black solid 0.11rem;
   cursor: pointer;
 }
 
