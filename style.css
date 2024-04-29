@@ -37,7 +37,13 @@ header {
   background: #f0f0f0;
   border-radius: 5%;
 }
-
+#customGrade{
+  text-align: center;
+  margin-bottom: 20px;
+  min-height: 40px;
+  padding: 15px 15px;
+  box-shadow: 0 0 0.2rem rgb(97, 184, 178);
+}
 h2 {
   color: #333;
   font-size: 24px;
@@ -70,7 +76,7 @@ h2 {
   align-items: center;
   padding: auto;
 }
-.print-csv {
+.topbtns {
   display: flex;
   gap: 0.5rem;
   justify-content: center;
@@ -181,12 +187,14 @@ button:hover {
   font-weight: bolder;
   color: black;
 }
-.remove-course {
+.remove {
   font-size: 1.5rem;
   color: red;
+}
+.remove-course {
   margin: auto 0.3rem;
 }
-.remove-course:hover {
+.remove:hover {
   cursor: pointer;
   opacity: 0.6;
 }
@@ -206,6 +214,11 @@ button:hover {
 .add {
   background-color: #4caf50;
   color: white;
+}
+.addGrade {
+  font-size: 1.5rem;
+  background-color: white;
+  color: #4caf50;
 }
 
 .calculate {
@@ -288,10 +301,11 @@ button:hover {
 }
 
 .about {
+  font-family: 'Times New Roman', Times, serif;
   background: rgb(222, 240, 240);
   font-size: large;
   margin: 1rem 0;
-  padding: 1rem 0.5rem;
+  padding: 0.5rem 0.5rem;
   border: 1px solid black;
 }
 /* Footer Styles */
@@ -352,7 +366,7 @@ footer {
     position: absolute;
     top: 0%;
     right: 0%;
-    margin: 0.2rem 0.3rem; 
+    margin: 0.2rem 0.3rem;
     font-size: 1rem;
   }
   .operationsGpa {
@@ -364,12 +378,20 @@ footer {
     gap: 10%;
     text-align: center;
   }
-  button{
+  button {
     font-size: 0.8rem;
     padding: 0.6rem;
   }
-  .selectGradScale{
+  .selectGradScale {
     font-size: 0.8rem;
+  }
+  #customGrade input {
+    width: 80%;
+    margin: 1% 2%;
+  }
+  #customGrade{
+    display: flex;
+    flex-direction: column;
   }
 }
 @media print {

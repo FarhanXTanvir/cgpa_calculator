@@ -15,31 +15,36 @@
 
       gtag("config", "G-GFZ3SZJZ27");
     </script>
-    <meta charset="UTF-8" >
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!--h1 SEO for CGPA or GPA Calculator -->
     <meta
       name="description"
       content="A CGPA and GPA calculator specifically designed for students in Bangladesh. Easy to use and accurate."
-    >
+    />
     <meta
       name="keywords"
       content="CGPA, GPA, Calculator, Online, Bangladesh, BD, Academic, Grade"
-    >
+    />
 
     <!--h1 Open Graph for CGPA or GPA Calculator -->
     <meta
       property="og:title"
       content="A modern CGPA Calculator for Students in Bangladesh"
-    >
+    />
     <meta
       property="og:description"
       content="A CGPA and GPA calculator specifically designed for students in Bangladesh. Easy to use and accurate."
-    >
-    <meta property="og:image" content="URL_TO_IMAGE" >
-    <meta property="og:url" content="https://cgpa-calculator-tool.web.app/" >
-    <meta name="twitter:card" content="summary_large_image" >
+    />
+    <!-- Author Information -->
+    <meta name="author" content="Farhan Tanvir" />
+
+    <meta property="og:image" content="URL_TO_IMAGE" />
+    <meta property="og:url" content="https://cgpa-calculator-tool.web.app/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="canonical" href="https://cgpa-calculator-tool.web.app/" />
 
     <title>CGPA Calculator</title>
 
@@ -48,25 +53,25 @@
       rel="apple-touch-icon"
       sizes="180x180"
       href="favicon_io/apple-touch-icon.png"
-    >
+    />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
       href="favicon_io/favicon-32x32.png"
-    >
+    />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
       href="favicon_io/favicon-16x16.png"
-    >
+    />
 
     <!--h1 Site Map -->
-    <link rel="manifest" href="favicon_io/site.webmanifest" >
+    <link rel="manifest" href="favicon_io/site.webmanifest" />
 
     <!--h1 Style Sheet -->
-    <link rel="stylesheet" href="style.css" >
+    <link rel="stylesheet" href="style.css?v=2" />
 
     <!--h1 font-awesome Fonts -->
     <link
@@ -75,7 +80,7 @@
       integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    >
+    />
   </head>
   <body>
     <header>
@@ -83,7 +88,7 @@
     </header>
     <div class="container">
       <div class="containerTop">
-        <span class="print-csv">
+        <span class="topbtns">
           <button class="print" id="print">
             Print <i class="fa-solid fa-print"></i>
           </button>
@@ -94,11 +99,17 @@
         <!-- Choose Grading Scale -->
         <select class="selectGradScale" name="gradScale">
           <option value="Default">Default</option>
-          <option value="BRAC">BRAC</option>
-          <option value="NSU">NSU</option>
           <option value="AIUB">AIUB</option>
+          <option value="BRAC">BRAC</option>
+          <option value="IUBAT">IUBAT</option>
+          <option value="IUB">IUB</option>
+          <option value="NSU">NSU</option>
+          <option value="UIU">UIU</option>
+          <option value="ULAB">ULAB</option>
+          <option value="custom">Custom</option>
         </select>
       </div>
+
       <div class="terms">
         <!-- Default Term is added here -->
         <!-- New Terms are added here one after another -->
@@ -108,13 +119,33 @@
           <button class="reset-all reset">Reset</button>
         </div>
       </div>
+      <div class="about">
+        <p>
+          All Government universities (i.e. BUET, CUET) of Bangladesh follow the
+          <b>Default</b>
+          <a
+            href="https://ugc.portal.gov.bd/sites/default/files/files/ugc.portal.gov.bd/page/ad5e35a2_65ec_4a35_948a_b4a7a54de7ba/Uniform%20Recommended%20Grading%20System%20%281%29.pdf"
+            >UGC Suggested</a
+          >
+          Letter Grading scale. AUST, BUP, DIU, EWU, GUB, MIST, SEU, SUB, UAP,
+          and other renowned universities also follow the default. You can also
+          use the <b>Custom</b> grading scale to calculate your CGPA if the
+          listed universities doesn't match with your university's grading
+          system.
+        </p>
+      </div>
 
       <div class="gradScale">
         <select class="selectGradScale" name="gradScale" id="gradScale">
           <option value="Default">Default</option>
-          <option value="BRAC">BRAC</option>
-          <option value="NSU">NSU</option>
           <option value="AIUB">AIUB</option>
+          <option value="BRAC">BRAC</option>
+          <option value="IUBAT">IUBAT</option>
+          <option value="IUB">IUB</option>
+          <option value="NSU">NSU</option>
+          <option value="UIU">UIU</option>
+          <option value="ULAB">ULAB</option>
+          <option value="custom">Custom</option>
         </select>
         <h2>Grade Scale:</h2>
         <div class="gradTable">
@@ -169,9 +200,8 @@
       </div>
       <div class="about">
         <p>
-          Dear reader, we don't store any of your data, and you don't have to
-          register or login here with your information. Hence, you can safely
-          use our tools.
+          We don't store any of your data, and you don't have to register or
+          login here with your information. Hence, your privacy is maintained.
         </p>
       </div>
     </div>

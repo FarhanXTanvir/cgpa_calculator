@@ -98,7 +98,7 @@ const courseTemplate = () => `
       </select>
     </span>
       <i class="fa-solid fa-circle-xmark remove-course remove"
-        title="Delete the Course"></i>
+        title="Remove the Course"></i>
   </div>
 `;
 
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Removing Past @review Remove result, warning
-// => See if we repeat things unnecessarily @bug
+// => See if we repeat things unnecessarily
 document.addEventListener("click", (event) => {
   if (
     event.target.matches(
@@ -252,9 +252,7 @@ document.addEventListener("click", (event) => {
       console.error("Invalid term index:", term.getAttribute("data-index"));
       return;
     }
-    if (currentIndex === 0) {
-      console.log("Cannot remove term: only one term left");
-    } else {
+    if (currentIndex > 0) {
       // Removes the term from html and termList
       term.remove();
       termList.splice(index, 1);
@@ -289,9 +287,6 @@ document.addEventListener("click", (event) => {
       console.error("Invalid term index:", term.getAttribute("data-index"));
       return;
     } else if (termList[index].courseCount === 1) {
-      console.log(
-        "Cannot remove course: only one course left in term " + (index + 1)
-      );
       return;
     } else {
       // * 1. Remove the course
