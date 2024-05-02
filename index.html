@@ -71,7 +71,7 @@
     <link rel="manifest" href="favicon_io/site.webmanifest" />
 
     <!--h1 Style Sheet -->
-    <link rel="stylesheet" href="style.css?v=2" />
+    <link rel="stylesheet" href="style.css?v=3" />
 
     <!--h1 font-awesome Fonts -->
     <link
@@ -85,8 +85,19 @@
   <body>
     <header>
       <h1>CGPA Calculator</h1>
+      <button class="hamburger">&#9776;</button>
     </header>
-    <div class="container">
+    <div class="sidebar">
+      <nav>
+        <button class="hamburger">&#9776;</button>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#gradScale">Grading Scale</a></li>
+          <li><a href="#social">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container" id="home">
       <div class="containerTop">
         <span class="topbtns">
           <button class="print" id="print">
@@ -212,7 +223,7 @@
         </p>
       </div>
     </div>
-    <div class="social">
+    <div class="social" id="social">
       <h3>Connect me <i class="fas fa-arrow-down"></i></h3>
       <div class="social-links">
         <ul>

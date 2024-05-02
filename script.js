@@ -105,11 +105,13 @@ const courseTemplate = () => `
 `;
 
 // Define a function to debug the courseCount, termCount, currentIndex and warnings
+/*
 const debug = () => {
   console.log("Updates: ");
   console.log(termList);
   console.log(termAll);
-};
+}; 
+*/
 
 // Document on load event add a default term before the last child of terms which is operationsCgpa
 document.addEventListener("DOMContentLoaded", () => {
@@ -171,6 +173,7 @@ document.addEventListener("click", (event) => {
     }
   }
 });
+
 
 document.addEventListener("click", (event) => {
   // h1 --------------------- Add --------------------------------------
@@ -780,4 +783,17 @@ document.getElementById("export").addEventListener("click", function () {
   document.body.appendChild(link); // Required for Firefox
 
   link.click(); // This will download the data as a .csv file
+});
+
+const hamburger = document.querySelectorAll(".hamburger");
+const sidebar = document.querySelector(".sidebar");
+
+hamburger.forEach((item) => {
+  item.addEventListener("click", function () {
+    if (sidebar.classList.contains("hidden")) {
+      sidebar.classList.remove("hidden");
+    } else {
+      sidebar.classList.add("hidden");
+    }
+  });
 });
