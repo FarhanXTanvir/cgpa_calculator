@@ -44,6 +44,19 @@ header {
   padding: 15px 15px;
   box-shadow: 0 0 0.2rem rgb(97, 184, 178);
 }
+#customGrade table {
+  width: 100%;
+  border-collapse: collapse;
+}
+#customGrade th,
+#customGrade td {
+  border: 1px solid #4d4343;
+  padding: 10px;
+  text-align: center;
+}
+#customGrade th {
+  background-color: #a0d0f5;
+}
 h2 {
   color: #333;
   font-size: 24px;
@@ -154,23 +167,23 @@ h2 {
 }
 
 /* Table Styles */
-table {
+.gradTable table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
 
-table th,
+.gradTable table th,
 table td {
   border: 1px solid #4d4343;
   padding: 10px;
   text-align: center;
 }
 
-table th {
+.gradTable table th {
   background-color: #b5f5a0;
 }
-table tr:nth-child(odd) {
+.gradTable table tr:nth-child(odd) {
   background-color: #cde7bd;
 }
 
@@ -221,7 +234,6 @@ button:hover {
 }
 .addGrade {
   font-size: 1.5rem;
-  background-color: white;
   color: #4caf50;
 }
 
@@ -314,17 +326,17 @@ button:hover {
 }
 
 /* Social Links */
-.social{
+.social {
   background: rgb(30, 30, 30);
   padding: 0.2rem 0.5rem;
   margin: 0.5rem 0;
   color: white;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
-.social h3{
+.social h3 {
   text-align: center;
 }
-.fa-arrow-down{
+.fa-arrow-down {
   color: rgb(0, 145, 255);
 }
 .social-links {
@@ -479,7 +491,6 @@ footer {
   }
   .social-links {
     width: 90%;
-
   }
 }
 @media print {

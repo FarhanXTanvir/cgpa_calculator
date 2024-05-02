@@ -213,7 +213,7 @@ const customGradeTemp = `
               </td>
               <td>
                 <i
-                  class="fa-solid fa-circle-plus addGrade add"
+                  class="fa-solid fa-circle-plus addGrade"
                   title="Add a new grade"
                 ></i>
                 <i
@@ -261,7 +261,7 @@ const rowTemplate = `
     </td>
     <td>
       <i
-        class="fa-solid fa-circle-plus addGrade add"
+        class="fa-solid fa-circle-plus addGrade"
         title="Add a new grade"
       ></i>
       <i
