@@ -12,7 +12,9 @@ body {
 header {
   background: black;
   color: #fff;
-  padding: 1rem 0;
+  padding: 0.2rem 0;
+  margin: 0;
+  position: relative;
 }
 header h1 {
   text-align: center;
@@ -29,6 +31,12 @@ header h1 {
   font-size: 1rem;
   cursor: pointer;
   margin-left: 1rem;
+}
+header .hamburger {
+  position: absolute;
+  bottom: 0.5rem;
+}
+.sidebar .hamburger {
   margin-top: 1rem;
 }
 .hidden {
@@ -457,6 +465,12 @@ footer {
 
 /* Responsive Styles */
 @media (max-width: 630px) {
+  header{
+    padding: 1.2rem 0;
+  }
+  header .hamburger{
+    font-size: 0.7rem;
+  }
   .sidebar {
     width: 60%;
   }
