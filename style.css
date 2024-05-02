@@ -19,11 +19,11 @@ header h1 {
 }
 .sidebar {
   position: absolute;
+  z-index: 1;
   top: 0;
   width: 22%;
-  background: rgb(27, 26, 26);
   height: 100%;
-  z-index: 1;
+  background: rgb(27, 26, 26);
 }
 .hamburger {
   font-size: 1rem;
@@ -457,7 +457,7 @@ footer {
 
 /* Responsive Styles */
 @media (max-width: 630px) {
-  .sidebar{
+  .sidebar {
     width: 60%;
   }
   .container {
