@@ -56,7 +56,10 @@ const termTemplate = (currentIndex) => `
   <div class="term" data-index="${currentIndex}">
     <div class="term-header">
       <h2>Term ${currentIndex + 1}</h2>
-      <button class="toggle-format toggle">Toggle Format</button>
+      <span>
+        <button class="toggle-format toggle">Toggle Format</button>
+        <i class="fa-solid fa-trash remove-term remove" title="Delete the Term"></i>
+      </span>
     </div>
     <span class="toggle-out">
     <div class="course">
@@ -67,9 +70,9 @@ const termTemplate = (currentIndex) => `
           class="courseCredits"
           placeholder="Course Credits"
         >
-      <select class="courseGrade">
-        ${grading.options}
-      </select>
+        <select class="courseGrade">
+          ${grading.options}
+        </select>
       </span>
       <i class="fa-solid fa-circle-xmark remove-course remove"
         title="Delete the Course"></i>
@@ -79,7 +82,6 @@ const termTemplate = (currentIndex) => `
       <button class="add-course add">Add Course</button>
       <button class="calculate-gpa calculate">Calculate GPA</button>
       <button class="reset-term reset">Reset</button>
-      <i class="fa-solid fa-trash remove-term remove" title="Delete the Term"></i>
     </div>
   </div>
 `;
@@ -115,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
   termList[0].courseCount = 1;
   const terms = document.querySelector(".terms");
   terms.insertAdjacentHTML("afterbegin", termTemplate(currentIndex));
-  debug();
+  // // debug();
 });
 
 // Removing Past @review Remove result, warning
@@ -200,7 +202,7 @@ document.addEventListener("click", (event) => {
       warning: 0,
     };
     //todo --------------Debug-----------
-    debug();
+    // debug();
   }
 
   // h1 ---------------- Add Course ----------------- @success Add Course |
@@ -225,7 +227,7 @@ document.addEventListener("click", (event) => {
       termList[index].courseCount++;
 
       //todo --------------Debug-----------
-      debug();
+      // debug();
     }
   }
 
@@ -268,7 +270,7 @@ document.addEventListener("click", (event) => {
     }
 
     //todo --------------Debug-----------
-    debug();
+    // debug();
   }
 
   // rh ---------------- Remove the course ----------------- @success Remove Course |
@@ -297,7 +299,7 @@ document.addEventListener("click", (event) => {
     }
 
     //todo --------------Debug-----------
-    debug();
+    // debug();
   }
 
   // h1 ------------------------------------ Reset --------------------------
@@ -342,7 +344,7 @@ document.addEventListener("click", (event) => {
     };
 
     //todo --------------Debug-----------
-    debug();
+    // debug();
   }
 
   // rh ---------------- Reset All ----------------- @success Reset All |
@@ -384,7 +386,7 @@ document.addEventListener("click", (event) => {
     };
 
     //todo --------------Debug-----------
-    debug();
+    // debug();
   }
   // h1 ----------------- Calculate ---------------------------------------------------------------
 
@@ -465,7 +467,7 @@ document.addEventListener("click", (event) => {
 
       if (termList[index].warning) {
         term.insertAdjacentHTML("beforeend", warning);
-        debug();
+        // debug();
         return;
       } else {
         termList[index].gpa = totalGradeCredits / termList[index].credits;
@@ -491,7 +493,7 @@ document.addEventListener("click", (event) => {
         </div>
         `;
         term.insertAdjacentHTML("beforeend", result);
-        debug();
+        // debug();
       }
     }
   }
@@ -589,7 +591,7 @@ document.addEventListener("click", (event) => {
         `;
       document.querySelector(".terms").insertAdjacentHTML("beforeend", warning);
 
-      debug();
+      // debug();
     } else {
       // Calculate the CGPA
       // For each of termList, add the termCredits to totalCredits and termCredits * termGpa to totalGpaCredits
@@ -618,7 +620,7 @@ document.addEventListener("click", (event) => {
       </div>
     `;
       document.querySelector(".terms").insertAdjacentHTML("afterend", result);
-      debug();
+      // debug();
     }
   }
 });
@@ -638,9 +640,6 @@ const toggleInHtml = `
             <span class="bind-inputs">
               <input type="number" class="termCredits" placeholder="Term Credits" >
               <input type="number" class="termGpa" placeholder="GPA" >
-              <i 
-              class="fa-solid fa-trash remove-term remove" 
-              title="Delete the Term"></i>
             </span>
           </span>
           `;
@@ -650,9 +649,6 @@ const operationsGpaHtml = `
       <button class="add-course add">Add Course</button>
       <button class="calculate-gpa calculate">Calculate GPA</button>
       <button class="reset-term reset">Reset</button>
-      <i 
-      class="fa-solid fa-trash remove-term remove" 
-      title="Delete the Term"></i>
     </div>
   `;
 
@@ -686,7 +682,7 @@ document.addEventListener("click", (event) => {
       } else alert("Nothing to toggle");
     }
     //todo --------------Debug-----------
-    debug();
+    // debug();
   }
 });
 // h1---------------------- @section Toggle All
