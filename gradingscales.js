@@ -275,14 +275,14 @@ const editSpanBtns = `
     <button
       type="button"
       id="editCustomGrade"
-      style="background: blueviolet; margin: 0.5rem;"
+      
     >
       Edit
     </button>
     <button
       type="button"
       id="resetCustomGrade"
-      style="background: red; margin: 0.5rem;"
+      class="reset"
     >
       Reset
     </button>
@@ -327,7 +327,7 @@ document.addEventListener("click", function (e) {
           grading.options += `<option value="${gradePoints}">${gradeName}</option>`;
         } else {
           // if any of the input field is empty then show warning text after customGradeForm
-          const warning = `<p class="warningCustom" style="color: red;">Please fill all the fields</p>`;
+          const warning = `<p class="warningCustom">Please fill all the fields</p>`;
           customGradeForm.insertAdjacentHTML("afterend", warning);
           break;
         }
