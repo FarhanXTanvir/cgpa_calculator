@@ -174,7 +174,6 @@ document.addEventListener("click", (event) => {
   }
 });
 
-
 document.addEventListener("click", (event) => {
   // h1 --------------------- Add --------------------------------------
   // h2 ---------------- Add Term ----------------- @success Add Term |
@@ -785,6 +784,7 @@ document.getElementById("export").addEventListener("click", function () {
   link.click(); // This will download the data as a .csv file
 });
 
+// h1 Sidebar Navigation @success Sidebar Nav
 const hamburger = document.querySelectorAll(".hamburger");
 const sidebar = document.querySelector(".sidebar");
 
@@ -797,3 +797,28 @@ hamburger.forEach((item) => {
     }
   });
 });
+
+// Click Hamburger menu if any list of sidebar is clicked
+const sidebar_menu = sidebar.querySelectorAll("ul li a");
+
+sidebar_menu.forEach((item) => {
+  item.addEventListener("click", function () {
+    // Toggle the 'hidden' class on the sidebar
+    sidebar.classList.toggle("hidden");
+    // const hamburger = document.querySelector("header .hamburger");
+    // hamburger.classList.add("hamburgerFixed");
+  });
+});
+
+window.onscroll = function () {
+  scrollFunction();
+};
+
+function scrollFunction() {
+  const backToTopButton = document.querySelector(".back-to-top");
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    backToTopButton.style.display = "block";
+  } else {
+    backToTopButton.style.display = "none";
+  }
+}
