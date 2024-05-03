@@ -227,14 +227,12 @@ const customGradeTemp = `
             <button
               type="button"
               id="doneCustomGrade"
-              style="background: blueviolet; margin: 0.5rem;"
             >
               Done
             </button>
             <button
               type="button"
               id="cancelCustomGrade"
-              style="background: red; margin: 0.5rem;"
             >
               Cancel
             </button>

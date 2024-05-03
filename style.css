@@ -1,16 +1,19 @@
 /* Global Styles */
 body {
-  font-family: "Arial Narrow Bold", sans-serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #ffffff;
+  background: rgb(243, 237, 237);
+  /* background: url(bg2.jpg) no-repeat center center fixed;
+  background-size: cover; */
   position: relative;
 }
 
 /* Header Styles */
 header {
-  background: black;
+  background: #051622;
+  border-bottom: 0.1rem solid rgb(0, 0, 0);
   color: #fff;
   padding: 0.2rem 0;
   margin: 0;
@@ -19,14 +22,53 @@ header {
 header h1 {
   text-align: center;
 }
+header h1 span {
+  color: red;
+}
+
+/* h1 @section Sidebar */
 .sidebar {
   position: absolute;
-  z-index: 1;
+  z-index: 10;
   top: 0;
   width: 22%;
   height: 100%;
-  background: rgb(27, 26, 26);
+  background: rgb(10, 150, 94);
 }
+nav {
+  position: fixed;
+  /* background: yellow; */
+}
+nav ul {
+  list-style-type: none;
+  width: 100%;
+  /* background: red; */
+  padding: 0;
+  margin-left: 1rem;
+}
+nav ul li:first-child {
+  border-top: 0.01rem solid white;
+}
+nav ul li {
+  padding: 0.5rem;
+  border-bottom: 0.01rem solid white;
+}
+nav ul li a {
+  text-decoration: none;
+  color: rgb(1, 0, 0);
+  font-size: 1.2rem;
+  font-style: bold;
+  font-weight: 700;
+}
+nav ul li:hover {
+  background: rgb(89, 214, 164);
+  box-shadow: 0 0 0.5rem rgb(22, 233, 180);
+  border: 1px solid rgb(15, 232, 192);
+}
+nav ul li a:hover {
+  color: black;
+}
+
 .hamburger {
   font-size: 1rem;
   cursor: pointer;
@@ -42,11 +84,7 @@ header .hamburger {
 .hidden {
   display: none;
 }
-/* .hamburgerFixed {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-} */
+
 .back-to-top {
   display: none;
   position: fixed;
@@ -63,30 +101,7 @@ header .hamburger {
   border-radius: 50%;
   padding: 0.5rem;
 }
-nav {
-  position: fixed;
-}
-nav ul {
-  list-style-type: none;
-  width: 100%;
-  margin-right: 1rem;
-}
-nav ul li {
-  width: 100%;
-  padding: 0.25rem;
-  margin-bottom: 1rem;
-}
-nav ul li a {
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-nav ul li:hover {
-  background: rgb(73, 185, 73);
-}
-
-/* Main Content Styles */
+/* h1 @section Container */
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -113,7 +128,10 @@ nav ul li:hover {
   margin-bottom: 20px;
   min-height: 40px;
   padding: 15px 15px;
-  box-shadow: 0 0 0.2rem rgb(97, 184, 178);
+  background: #8dc39b;
+  border-radius: 0.2rem;
+  border: gray solid 0.03rem;
+  box-shadow: 0 0 0.5rem black;
 }
 #customGrade table {
   width: 100%;
@@ -121,31 +139,54 @@ nav ul li:hover {
 }
 #customGrade th,
 #customGrade td {
-  border: 1px solid #4d4343;
-  padding: 10px;
+  border: 0.1rem solid #4d4343;
+  padding: 0.28rem 0;
   text-align: center;
 }
 #customGrade th {
-  background-color: #a0d0f5;
+  background-color: rgba(30, 221, 176, 0.971);
+}
+#customGrade td {
+  background-color: rgb(250, 250, 250);
+}
+#customGrade td input {
+  border-radius: 0.3rem;
+  width: 50%;
+  margin: 0;
+  font-style: bold;
+  font-weight: 500;
+}
+.addGrade {
+  font-size: 1.5rem;
+  color: rgb(14, 227, 96);
+}
+#doneCustomGrade {
+  background: rgb(7, 125, 236);
+  margin: 0.5rem;
+}
+#cancelCustomGrade {
+  background: rgb(236, 91, 7);
+  margin: 0.5rem;
 }
 h2 {
-  color: #333;
+  color: #000000;
   font-size: 24px;
   margin-bottom: 20px;
 }
-
+/* h1 @section Terms */
 .terms {
-  margin-bottom: 20px;
-  background: #c6c0c0;
+  margin-bottom: 2rem;
+  background: #8dc39b;
   min-height: 40px;
   padding: 15px 15px;
-  box-shadow: 0 0 5px black;
+  box-shadow: 0 0 0.5rem black;
 }
 .term {
   margin-bottom: 20px;
-  background: whitesmoke;
+  background: #badbc3;
+  box-shadow: 0 0 3px black;
   min-height: 40px;
-  padding: 15px 10px;
+  padding: 1rem 1.2rem;
 }
 
 .course {
@@ -249,13 +290,17 @@ table td {
   border: 1px solid #4d4343;
   padding: 10px;
   text-align: center;
+  color: rgb(0, 0, 0);
 }
 
 .gradTable table th {
-  background-color: #b5f5a0;
+  background-color: rgb(186, 238, 213);
 }
 .gradTable table tr:nth-child(odd) {
-  background-color: #cde7bd;
+  background-color: rgba(161, 222, 204, 0.686);
+}
+.gradTable table tr:nth-child(even) {
+  background-color: rgba(178, 236, 224, 0.355);
 }
 
 /* Buttons */
@@ -300,12 +345,8 @@ button:hover {
 }
 
 .add {
-  background-color: #4caf50;
+  background-color: #2bdd54;
   color: white;
-}
-.addGrade {
-  font-size: 1.5rem;
-  color: #4caf50;
 }
 
 .calculate {
@@ -388,19 +429,22 @@ button:hover {
 }
 
 .about {
-  font-family: "Times New Roman", Times, serif;
-  background: rgb(222, 240, 240);
+  background: #28cca68b;
   font-size: large;
+  color: #000000;
   margin: 1rem 0;
   padding: 0.5rem 0.5rem;
-  border: 1px solid black;
+  border: 0.01rem solid rgb(0, 0, 0);
 }
-
-/* Social Links */
+.about a {
+  color: rgba(8, 48, 230, 0.796);
+}
+/* h1 @section Social Links */
 .social {
   background: rgb(30, 30, 30);
   padding: 0.2rem 0.5rem;
-  margin: 0.5rem 0;
+  margin: 0.5rem 0 0;
+  border-bottom: 0.1rem solid white;
   color: white;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
@@ -479,12 +523,12 @@ button:hover {
 footer {
   text-align: center;
   padding: 0.5rem;
-  background: black;
+  background: #051622;
   color: #fff;
   width: 100%;
 }
 
-/* Responsive Styles */
+/* h1 @section Responsive Styles */
 @media (max-width: 630px) {
   header {
     padding: 1.2rem 0;
@@ -561,10 +605,6 @@ footer {
   .selectGradScale {
     font-size: 0.8rem;
   }
-  #customGrade input {
-    width: 80%;
-    margin: 1% 2%;
-  }
   #customGrade {
     display: flex;
     flex-direction: column;
@@ -572,13 +612,19 @@ footer {
   .social-links {
     width: 90%;
   }
-  .back-to-top{
+  .back-to-top {
     right: 2rem;
   }
 }
 @media (min-width: 630px) and (max-width: 840px) {
   .sidebar {
     width: 30%;
+  }
+}
+/* If screen width greater than 980px sidebar width 20% */
+@media (min-width: 2000px) {
+  .sidebar {
+    width: 10%;
   }
 }
 @media print {
