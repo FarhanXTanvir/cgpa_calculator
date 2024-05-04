@@ -64,9 +64,9 @@ nav ul li a {
 }
 
 nav ul li:hover {
-  background: rgb(89, 214, 164);
-  box-shadow: 0 0 0.5rem rgb(22, 233, 180);
-  border: 1px solid rgb(15, 232, 192);
+  background: rgb(112, 235, 186);
+  box-shadow: 0 0 0.3rem rgb(35, 246, 193);
+  border: 0.1rem solid rgb(10, 178, 147);
 }
 
 nav ul li a:hover {
@@ -658,6 +658,10 @@ footer {
 .sidebar {
   width: 55%;
   padding: 5%;
+}
+nav {
+  justify-content: left;
+  padding: 0;
 }
 
 /* Medium devices (tablets) */
