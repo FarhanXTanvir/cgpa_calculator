@@ -28,43 +28,47 @@ header h1 span {
 
 /* h1 @section Sidebar */
 .sidebar {
-  position: absolute;
-  z-index: 10;
-  top: 0;
-  width: 22%;
-  height: 100%;
-  background: rgb(10, 150, 94);
-}
-nav {
   position: fixed;
-  /* background: yellow; */
+  z-index: 1;
+  top: 0;
+  height: 100%;
+  background: rgb(23, 192, 124);
+  display: flex;
+  flex-direction: column;
+  transition: 0.4s ease-in-out;
 }
+
 nav ul {
   list-style-type: none;
   width: 100%;
-  /* background: red; */
-  padding: 0;
-  margin-left: 1rem;
+  margin-top: 1.2rem;
 }
-nav ul li:first-child {
-  border-top: 0.01rem solid white;
-}
+
 nav ul li {
   padding: 0.5rem;
   border-bottom: 0.01rem solid white;
+  width: 80%;
+  word-wrap: break-word;
 }
+
+nav ul li:first-child {
+  border-top: 0.01rem solid white;
+}
+
 nav ul li a {
   text-decoration: none;
   color: rgb(1, 0, 0);
-  font-size: 1.2rem;
-  font-style: bold;
+  font-size: 1.5rem;
   font-weight: 700;
+  overflow: hidden;
 }
+
 nav ul li:hover {
   background: rgb(89, 214, 164);
   box-shadow: 0 0 0.5rem rgb(22, 233, 180);
   border: 1px solid rgb(15, 232, 192);
 }
+
 nav ul li a:hover {
   color: black;
 }
@@ -80,6 +84,7 @@ header .hamburger {
 }
 .sidebar .hamburger {
   margin-top: 1rem;
+  left: 0.1rem;
 }
 .hidden {
   display: none;
@@ -91,7 +96,7 @@ header .hamburger {
   bottom: 2rem;
   right: 1rem;
   text-decoration: none;
-  background-color: rgb(239, 244, 234);
+  background: rgb(225, 221, 221);
   border-radius: 50%;
   padding: 0.65rem;
 }
@@ -101,6 +106,7 @@ header .hamburger {
   border-radius: 50%;
   padding: 0.5rem;
 }
+
 /* h1 @section Container */
 .container {
   max-width: 800px;
@@ -125,13 +131,12 @@ header .hamburger {
 }
 #customGrade {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
+  background: #c9d6d2;
   min-height: 40px;
-  padding: 15px 15px;
-  background: #8dc39b;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 0 0.15rem black;
   border-radius: 0.2rem;
-  border: gray solid 0.03rem;
-  box-shadow: 0 0 0.5rem black;
 }
 #customGrade table {
   width: 100%;
@@ -144,7 +149,7 @@ header .hamburger {
   text-align: center;
 }
 #customGrade th {
-  background-color: rgba(30, 221, 176, 0.971);
+  background: #badbc3;
 }
 #customGrade td {
   background-color: rgb(250, 250, 250);
@@ -158,26 +163,41 @@ header .hamburger {
 }
 .addGrade {
   font-size: 1.5rem;
-  color: rgb(14, 227, 96);
+  color: #27c64c;
+}
+.addGrade:hover {
+  color: #3bd65f;
 }
 #doneCustomGrade {
   background: rgb(7, 125, 236);
   margin: 0.5rem;
 }
+#doneCustomGrade:hover {
+  color: white;
+  background: blue;
+}
 #cancelCustomGrade {
   background: rgb(236, 91, 7);
   margin: 0.5rem;
+}
+#cancelCustomGrade:hover {
+  background: rgb(255, 47, 1);
+  color: white;
 }
 #editCustomGrade {
   background: rgb(10, 10, 252);
   margin: 0.5rem;
   color: white;
 }
+#editCustomGrade:hover {
+  background: rgb(41, 68, 249);
+  color: rgb(0, 0, 0);
+}
 .warningCustom {
   color: rgb(0, 0, 0);
-  background: rgba(244, 151, 45, 0.748);
+  background: rgba(247, 161, 62, 0.748);
   padding: 0.5rem;
-  border: 0.1rem dotted rgb(92, 72, 1);
+  border: 0.1rem dotted rgb(145, 130, 75);
   width: 65%;
   margin: 0 auto;
 }
@@ -189,10 +209,11 @@ h2 {
 /* h1 @section Terms */
 .terms {
   margin-bottom: 2rem;
-  background: #8dc39b;
+  background: #c9d6d2;
   min-height: 40px;
-  padding: 15px 15px;
-  box-shadow: 0 0 0.5rem black;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 0 0.15rem black;
+  border-radius: 0.2rem;
 }
 .term {
   margin-bottom: 20px;
@@ -275,6 +296,13 @@ h2 {
 
 .hidden {
   display: none;
+}
+
+#gradScale {
+  position: absolute;
+  padding: 5px;
+  top: 15px;
+  right: 15px;
 }
 
 .gradScale {
@@ -361,7 +389,7 @@ button:hover {
 }
 
 .add {
-  background-color: #2bdd54;
+  background-color: #1db541;
   color: white;
 }
 
@@ -439,15 +467,9 @@ button:hover {
 .toggle-in button {
   margin-bottom: auto;
 }
-#gradScale {
-  position: absolute;
-  padding: 5px;
-  top: 15px;
-  right: 15px;
-}
 
 .about {
-  background: #28cca68b;
+  background: #9dedda8b;
   font-size: large;
   color: #000000;
   margin: 1rem 0;
@@ -555,9 +577,6 @@ footer {
     font-size: 0.7rem;
     bottom: 0.2rem;
   }
-  .sidebar {
-    width: 60%;
-  }
   .container {
     min-width: 65%;
   }
@@ -635,15 +654,30 @@ footer {
     right: 2rem;
   }
 }
-@media (min-width: 630px) and (max-width: 840px) {
+/* Small devices (phones) */
+.sidebar {
+  width: 55%;
+  padding: 5%;
+}
+
+/* Medium devices (tablets) */
+@media (min-width: 600px) {
+  .sidebar {
+    width: 60%;
+  }
+}
+
+/* Large devices (laptops, desktops) */
+@media (min-width: 900px) {
   .sidebar {
     width: 30%;
   }
 }
-/* If screen width greater than 980px sidebar width 20% */
-@media (min-width: 2000px) {
+
+/* Extra large devices (large desktops, TVs) */
+@media (min-width: 1200px) {
   .sidebar {
-    width: 10%;
+    width: 20%;
   }
 }
 @media print {
